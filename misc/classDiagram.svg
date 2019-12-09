@@ -1,0 +1,507 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 843.7 839" style="enable-background:new 0 0 843.7 839;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#FFFFFF;}
+	.st1{fill:none;stroke:#000000;stroke-miterlimit:10;}
+	.st2{font-family:'Arial-BoldMT';}
+	.st3{font-size:13px;}
+	.st4{font-family:'ArialMT';}
+</style>
+<g transform="translate(-94,-38) scale(1,1)">
+	<rect x="305" y="48" class="st0" width="314.3" height="400"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M305,48h314.3v400H305V48z"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M305,73h314.3"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M305,201h314.3"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path class="st1" d="M1,0"/>
+		<text transform="matrix(1 0 0 1 443.3499 67.5)" class="st2 st3">Rental</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 90.5)" class="st4 st3">-rentalID : int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 105.5)" class="st4 st3">-unicornID: int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 120.5)" class="st4 st3">-customerID: int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 135.5)" class="st4 st3">-cintractualDuration: int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 150.5)" class="st4 st3">-start: Date Time</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 165.5)" class="st4 st3">-end: Date Time</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 180.5)" class="st4 st3">-deposit: double</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 195.5)" class="st4 st3">-total: double</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 218.5)" class="st4 st3">+getRentalID(): int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 233.5)" class="st4 st3">+setRentalID(rentalID: int): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 248.5)" class="st4 st3">+getUnicornID(): int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 263.5)" class="st4 st3">+setUnicornID(unicornID: int): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 278.5)" class="st4 st3">+getCustomerID(): int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 293.5)" class="st4 st3">+setCustomerID(customerID: int): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 308.5)" class="st4 st3">+getCintractualDuration(): int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 323.5)" class="st4 st3">+setCintractualDuration(cintractualDuration: int): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 338.5)" class="st4 st3">+getStart(): Date Time</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 353.5)" class="st4 st3">+setStart(start: Date Time): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 368.5)" class="st4 st3">+getEnd(): Date Time</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 383.5)" class="st4 st3">+setEnd(end: Date Time): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 398.5)" class="st4 st3">+getDeposit(): double</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 413.5)" class="st4 st3">+setDeposit(deposit: double): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 428.5)" class="st4 st3">+getTotal(): double</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 310 443.5)" class="st4 st3">+setTotal(total: double): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<rect x="585" y="512" class="st0" width="325.1" height="355"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M585,512h325.1v355H585V512z"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M585,537h325.1"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M585,650h325.1"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path class="st1" d="M1,0"/>
+		<text transform="matrix(1 0 0 1 719.3921 531.5)" class="st2 st3">Customer</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 554.5)" class="st4 st3">-customerID: int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 569.5)" class="st4 st3">-name: String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 584.5)" class="st4 st3">-phoneNo: String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 599.5)" class="st4 st3">-unicornLicenseNo: String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 614.5)" class="st4 st3">-isVerified: Boolean</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 629.5)" class="st4 st3">-userID: String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 644.5)" class="st4 st3">-password: String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 667.5)" class="st4 st3">+getCustomerID(): int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 682.5)" class="st4 st3">+setCustomerID(customerID: int): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 697.5)" class="st4 st3">+getName(): String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 712.5)" class="st4 st3">+setName(name: String): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 727.5)" class="st4 st3">+getPhoneNo(): String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 742.5)" class="st4 st3">+setPhoneNo(phoneNo: String): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 757.5)" class="st4 st3">+getUnicornLicenseNo(): String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 772.5)" class="st4 st3">+setUnicornLicenseNo(unicornLicenseNo: String): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 787.5)" class="st4 st3">+isVerified(): Boolean</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 802.5)" class="st4 st3">+setVerified(verified: Boolean): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 817.5)" class="st4 st3">+getUserID(): String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 832.5)" class="st4 st3">+setUserID(userID: String): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 847.5)" class="st4 st3">+getPassword(): String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 590 862.5)" class="st4 st3">+setPassword(password: String): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<rect x="105" y="512" class="st0" width="271.6" height="310"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M105,512h271.6v310H105V512z"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M105,537h271.6"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M105,635h271.6"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path class="st1" d="M1,0"/>
+		<text transform="matrix(1 0 0 1 218.4194 531.5)" class="st2 st3">Unicorn</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 554.5)" class="st4 st3">-unicornID: int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 569.5)" class="st4 st3">-capacity: int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 584.5)" class="st4 st3">-unicornName: String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 599.5)" class="st4 st3">-color: String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 614.5)" class="st4 st3">-type: String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 629.5)" class="st4 st3">-price: double</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 652.5)" class="st4 st3">+getUnicornID(): int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 667.5)" class="st4 st3">+setUnicornID(unicornID: String): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 682.5)" class="st4 st3">+getCapacity(): int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 697.5)" class="st4 st3">+setCapacity(capacity: int): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 712.5)" class="st4 st3">+getUnicornName(): String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 727.5)" class="st4 st3">+setUnicornName(unicornName: String): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 742.5)" class="st4 st3">+getColor(): String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 757.5)" class="st4 st3">+setColor(color: String): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 772.5)" class="st4 st3">+getType(): String</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 787.5)" class="st4 st3">+setType(type: String): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 802.5)" class="st4 st3">+getPrice(): double</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 110 817.5)" class="st4 st3">+setPrice(price: double): void</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<rect x="769" y="104" class="st0" width="159.7" height="103"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M769,104h159.7v103H769V104z"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M769,129h159.7"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M769,152h159.7"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path class="st1" d="M1,0"/>
+		<text transform="matrix(1 0 0 1 831.1309 123.5)" class="st2 st3">Model</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 774 146.5)" class="st4 st3">#uniqueID: int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 774 169.5)" class="st4 st3">+Model(uniqueID: int)</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<g>
+		<path d="M1,0"/>
+		<text transform="matrix(1 0 0 1 774 184.5)" class="st4 st3">+getUnique(): int</text>
+	</g>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M811,512v-32H521v-32"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st0" d="M529.4,468.3L521,448l-8.4,20.3"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M529.4,468.3L521,448l-8.4,20.3H529.4"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M177,512v-32h216v-32"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st0" d="M401.4,468.3L393,448l-8.4,20.3"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M401.4,468.3L393,448l-8.4,20.3H401.4"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M620,210l148-36"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st0" d="M750.2,187l17.8-13l-21.7-3.4"/>
+</g>
+<g transform="translate(-94,-38) scale(1,1)">
+	<path class="st1" d="M750.2,187l17.8-13l-21.7-3.4L750.2,187"/>
+</g>
+</svg>

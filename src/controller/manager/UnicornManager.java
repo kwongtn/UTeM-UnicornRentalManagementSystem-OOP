@@ -12,18 +12,22 @@ public class UnicornManager{
 
 	private static Vector<Unicorn> unicorns = new Vector<>();
 
+	private static String dbAddress = "jdbc:mysql://localhost:8080/UNICORNDB";
+	private static String dbUsername = "root";
+	private static String dbPassword = "password";
+
 	public static int addUnicorn(Unicorn unicorn) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
 
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:8080/UNICORNDB", "root", "password");
+		Connection connection = DriverManager.getConnection(dbAddress, dbUsername, dbPassword);
 		PreparedStatement ps = connection.prepareStatement("INSERT INTO UNICORN(name, type, rate, color, availability, healthCheck) VALUES (?,?,?,?,?,?)");
 		
-		ps.setString(1, unicorn.getPlateNo());
-		ps.setString(2, unicorn.getModel());
-		ps.setDouble(3, unicorn.getPrice());
-		ps.setInt(4, unicorn.getCapacity());
-		ps.setBoolean(5, unicorn.isAuto());
-		ps.setBoolean(6, unicorn.isUsable());
+		ps.setString(1, unicorn.getName());
+		ps.setString(2, unicorn.getType());
+		ps.setDouble(3, unicorn.getRate());
+		ps.setString(4, unicorn.getColor());
+		ps.setBoolean(5, unicorn.isAvailable());
+		ps.setBoolean(6, unicorn.isHealthCheck());
 
 		int status = ps.executeUpdate();
 
@@ -70,8 +74,8 @@ public class UnicornManager{
 
 		Class.forName("com.mysql.jdbc.Driver");
 
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbCRMS_B031810219", "root", "password");
-		PreparedStatement ps = connection.prepareStatement("SELECT * FROM Unicorn");
+		Connection connection = DriverManager.getConnection(dbAddress, dbUsername, dbPassword);
+		PreparedStatement ps = connection.prepareStatement("SELECT name, type, rate, color, available, healthCheck FROM Unicorn");
 		ResultSet rs = ps.executeQuery();
 
 		Vector<Unicorn> unicorns = new Vector<>();
@@ -79,12 +83,13 @@ public class UnicornManager{
 		while(rs.next()){
 			Unicorn unicorn = new Unicorn();
 
-			unicorn.setPlateNo(rs.getString(2));
-			unicorn.setModel(rs.getString(3));
-			unicorn.setPrice(rs.getDouble(4));
-			unicorn.setCapacity(rs.getInt(5));
-			unicorn.setAuto(rs.getBoolean(6));
-			unicorn.setUsable(rs.getBoolean(7));
+			unicorn.setName(rs.getString(1));
+			unicorn.setType(rs.getString(2));
+			unicorn.setRate(rs.getDouble(3));
+			unicorn.setColor(rs.getString(4));
+			unicorn.setAvailable(rs.getBoolean(5));
+			unicorn.setHealthCheck(rs.getBoolean(6));
+
 
 			unicorns.add(unicorn);
 		}

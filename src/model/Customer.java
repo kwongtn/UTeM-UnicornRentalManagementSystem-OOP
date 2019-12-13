@@ -1,67 +1,60 @@
 package model;
 
 public class Customer extends Model{
+    private static int LATEST_ID;
     private String name;
-    private String licenseNo;
     private String phoneNo;
-    private boolean verified;
-    private String userID;
-    private String password;
+    private int unicornLicenseID;
 
     // Getter & Setter for customerID
     public Customer(int customerID){
-        super(customerID);
+        super(++LATEST_ID);
     }
     public int getCustomerID(){
-        return uniqueID;
+        return super.getUniqueID();
     }
 
-    // Getter & Setter for name
+    /**
+     * @return the name
+     */
     public String getName() {
         return name;
     }
+
+    /**
+     * @param name the name to set
+     */
     public void setName(String name) {
         this.name = name;
     }
 
-    // Getter & Setter for licenseNo
-    public String getLicenseNo() {
-        return licenseNo;
-    }
-    public void setLicenseNo(String licenseNo) {
-        this.licenseNo = licenseNo;
-    }
-
-    // Getter & Setter for phoneNo
+    /**
+     * @return the phoneNo
+     */
     public String getPhoneNo() {
         return phoneNo;
     }
+
+    /**
+     * @param phoneNo the phoneNo to set
+     */
     public void setPhoneNo(String phoneNo) {
         this.phoneNo = phoneNo;
     }
 
-    // Getter & Setter for verified
-    public boolean isVerified() {
-        return verified;
-    }
-    public void setVerified(boolean verified) {
-        this.verified = verified;
-    }
-
-    // Getter & Setter for userID
-    public String getUserID() {
-        return userID;
-    }
-    public void setUserID(String userID) {
-        this.userID = userID;
+    /**
+     * @return the unicornLicenseID
+     */
+    public int getUnicornLicenseID() {
+        return unicornLicenseID;
     }
 
-    // Getter & Setter for password
-    public String getPassword() {
-        return password;
+    /**
+     * @param unicornLicenseID the unicornLicenseID to set
+     */
+    public void setUnicornLicenseID(int unicornLicenseID) {
+        this.unicornLicenseID = unicornLicenseID;
     }
-    public void setPassword(String password) {
-        this.password = password;
-    }
+    
 
 }

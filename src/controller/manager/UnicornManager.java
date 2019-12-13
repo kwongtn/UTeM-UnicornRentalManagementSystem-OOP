@@ -15,8 +15,8 @@ public class UnicornManager{
 	public static int addUnicorn(Unicorn unicorn) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
 
-		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/dbCRMS_B031810219", "root", "password");
-		PreparedStatement ps = connection.prepareStatement("INSERT INTO UNICORN(PlateNo, Model, Price, Capacity, Auto, Usable) VALUES (?,?,?,?,?,?)");
+		Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:8080/UNICORNDB", "root", "password");
+		PreparedStatement ps = connection.prepareStatement("INSERT INTO UNICORN(name, type, rate, color, availability, healthCheck) VALUES (?,?,?,?,?,?)");
 		
 		ps.setString(1, unicorn.getPlateNo());
 		ps.setString(2, unicorn.getModel());

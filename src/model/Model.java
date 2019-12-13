@@ -1,12 +1,12 @@
 package model;
 abstract class Model{
-    protected int uniqueID;
+    private int uniqueID;
 
-    public Model(int uniqueID){
+    protected Model(int uniqueID){
         this.uniqueID = uniqueID;
     }
 
-    public int getUniqueID() {
+    protected int getUniqueID() {
         return uniqueID;
     }
 

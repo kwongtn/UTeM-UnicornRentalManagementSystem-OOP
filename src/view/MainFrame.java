@@ -15,7 +15,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	private JButton btnManageRentals = new JButton("Manage Rentals");
 	
 	public MainFrame() {
-		super("Car Rental Management System");
+		super("Unicorn Rental Management System");
 		
 		GridLayout layout = new GridLayout(3, 1, 10, 10);
 		

@@ -1,68 +1,110 @@
 package model;
 
 public class Unicorn extends Model{
-	private static int LATEST_ID;
-    private String plateNo;
-    private String model;
-    private double price;
-    private boolean auto;
-    private boolean usable;
-    private int capacity;
-
-    // Getter & Setter for UnicornID
-    public int getUnicornID(){
-        return uniqueID;
-    }
+    private static int LATEST_ID;
+    private String name;
+    private String type;
+    private double rate;
+    private String color;
+    private boolean available;
+    private boolean healthCheck;
+    
+    /**
+     * Create a unicorn item updated with an ID
+     */
     public Unicorn(){
         super(++LATEST_ID);
     }
 
-    // Getter & Setter for plateNo
-    public String getPlateNo(){
-        return plateNo;
-    }
-    public void setPlateNo(String plateNo){
-        this.plateNo = plateNo;
-    }
-
-    // Getter & Setter for model
-    public String getModel(){
-        return model;
-    }
-    public void setModel(String model){
-        this.model = model;
+    /**
+     * @return Unicorn ID
+     */
+    public int getUnicornID(){
+        return super.getUniqueID();
     }
 
-    // Getter & Setter for price
-    public double getPrice(){
-        return price;
-    }
-    public void setPrice(double price){
-        this.price = price;
-    }
-
-    // Getter & Setter for auto
-    public boolean isAuto(){
-        return auto;
-    }
-    public void setAuto(boolean auto){
-        this.auto = auto;
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
     }
 
-    // Getter & Setter for usable
-    public boolean isUsable(){
-        return usable;
-    }
-    public void setUsable(boolean usable){
-        this.usable = usable;
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
     }
 
-    // Getter & Setter for capacity
-    public int getCapacity(){
-        return capacity;
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
     }
-    public void setCapacity(int capacity){
-        this.capacity = capacity;
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * @return the rate
+     */
+    public double getRate() {
+        return rate;
+    }
+
+    /**
+     * @param rate the rate to set
+     */
+    public void setRate(double rate) {
+        this.rate = rate;
+    }
+
+    /**
+     * @return Unicorn color
+     */
+    public String getColor() {
+        return color;
+    }
+
+    /**
+     * @param color Unicorn Color
+     */
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    /**
+     * @return the available
+     */
+    public boolean isAvailable() {
+        return available;
+    }
+
+    /**
+     * @param available the available to set
+     */
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    /**
+     * @return the healthCheck
+     */
+    public boolean isHealthCheck() {
+        return healthCheck;
+    }
+
+    /**
+     * @param healthCheck the healthCheck to set
+     */
+    public void setHealthCheck(boolean healthCheck) {
+        this.healthCheck = healthCheck;
     }
 }
 

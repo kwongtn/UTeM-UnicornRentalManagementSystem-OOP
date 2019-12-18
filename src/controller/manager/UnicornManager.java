@@ -32,6 +32,8 @@ public class UnicornManager {
 
 		int status = ps.executeUpdate();
 
+		unicorn.setUnicornID(connection.prepareStatement("SELECT MAX(UnicornID) FROM UNICORN").executeQuery().getInt(1));
+
 		connection.close();
 
 		return status;

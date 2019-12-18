@@ -1,7 +1,7 @@
 package model;
 
-public class Unicorn extends Model{
-    private static int LATEST_ID;
+public class Unicorn{
+    private int unicornID;
     private String name;
     private String type;
     private double rate;
@@ -9,12 +9,12 @@ public class Unicorn extends Model{
     private boolean available;
     private boolean healthCheck;
     
-    public Unicorn(){
-        super(++LATEST_ID);
+   
+    public void setUnicornID(int unicornID){
+        this.unicornID = unicornID;
     }
-
     public int getUnicornID(){
-        return super.getUniqueID();
+        return this.unicornID;
     }
     
     public String getName() {

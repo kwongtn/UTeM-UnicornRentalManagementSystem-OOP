@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 public class MainFrame extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
-	private JButton btnManageCars = new JButton("Manage cars");
+	private JButton btnManageUnicorn = new JButton("Manage Unicorn");
 	private JButton btnManageCustomers = new JButton("Manage Customers");
 	private JButton btnManageRentals = new JButton("Manage Rentals");
 	
@@ -19,11 +19,11 @@ public class MainFrame extends JFrame implements ActionListener {
 		
 		GridLayout layout = new GridLayout(3, 1, 10, 10);
 		
-		btnManageCars.addActionListener(this);
+		btnManageUnicorn.addActionListener(this);
 		btnManageCustomers.addActionListener(this);
 		btnManageRentals.addActionListener(this);
 		
-		this.add(btnManageCars);
+		this.add(btnManageUnicorn);
 		this.add(btnManageCustomers);
 		this.add(btnManageRentals);
 	
@@ -40,8 +40,8 @@ public class MainFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		Object source = event.getSource();
 		
-		if(source == btnManageCars) {
-			// new ManageCarsDialog(this);
+		if(source == btnManageUnicorn) {
+			new ManageUnicornDialog(this);
 		}
 	}
 	

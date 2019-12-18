@@ -9,30 +9,17 @@ public class Unicorn extends Model{
     private boolean available;
     private boolean healthCheck;
     
-    /**
-     * Create a unicorn item updated with an ID
-     */
     public Unicorn(){
         super(++LATEST_ID);
     }
 
-    /**
-     * @return Unicorn ID
-     */
     public int getUnicornID(){
         return super.getUniqueID();
     }
-
-    /**
-     * @return the name
-     */
+    
     public String getName() {
         return name;
     }
-
-    /**
-     * @param name the name to set
-     */
     public void setName(String name) {
         this.name = name;
     }

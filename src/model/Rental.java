@@ -3,18 +3,19 @@ package model;
 public class Rental extends Model{
     private Unicorn unicorn;
     private Customer customer;
-    private int contractualDuration;
-    private long start;
-    private long end;
-    private double total;
-    private double deposit;
+    private long startDate;
+    private long endDate;
+    private double depositPaid;
+    private double additionalCharges;
+    private double incurredCharges;
 
-    // Getter & Setter for rentalID
-    public int getRentalID(){
-        return uniqueID;
+    private static int LATEST_ID;
+
+    public Rental(){
+        super(++LATEST_ID);
     }
-    public Rental(int rentalID){
-        super(rentalID);
+    public int getRentalID(){
+        return super.getUniqueID();
     }
 
     // Getter & Setter for unicorn
@@ -24,6 +25,9 @@ public class Rental extends Model{
     public void setunicorn(Unicorn unicorn) {
         this.unicorn = unicorn;
     }
+    public int getUnicornID(){
+        return unicorn.getUnicornID();
+    }
 
     // Getter & Setter for customer
     public Customer getcustomer() {
@@ -32,45 +36,50 @@ public class Rental extends Model{
     public void setcustomer(Customer customer) {
         this.customer = customer;
     }
-
-    // Getter & Setter for contractualDuration
-    public int getContractualDuration() {
-        return contractualDuration;
-    }
-    public void setContractualDuration(int contractualDuration){
-        if (contractualDuration > 0){
-            this.contractualDuration = contractualDuration;
-            this.total = contractualDuration * unicorn.getPrice();
-        }
+    public int getCustomerID(){
+        return customer.getCustomerID();
     }
 
-    // Getter & Setter for start
-    public long getStart(){
-        return start;
+    // Getter & Setter for dates
+    public long getStartDate() {
+        return startDate;
     }
-    public void setStart(long start) {
-        this.start = start;
+    public void setStartDate(long startDate) {
+        this.startDate = startDate;
     }
-
-    // Getter & Setter for end
-    public long getEnd() {
-        return end;
+    public long getEndDate() {
+        return endDate;
     }
-    public void setEnd(long end) {
-        this.end = end;
+    public void setEndDate(long endDate) {
+        this.endDate = endDate;
     }
 
-    // Getter & Setter for total
-    public double getTotal() {
-        return total;
+    // Getter & setter for depositPaid
+    public double getDepositPaid() {
+        return depositPaid;
+    }
+    public void setDepositPaid(double depositPaid) {
+        this.depositPaid = depositPaid;
     }
 
-    // Getter & Setter for deposit
-    public double getDeposit() {
-        return deposit;
+    // Getter & setter for additional and incurred charges
+    public double getAdditionalCharges() {
+        return additionalCharges;
     }
-    public void setDeposit(double deposit) {
-        this.deposit = deposit;
+    public void setAdditionalCharges(double additionalCharges) {
+        this.additionalCharges = additionalCharges;
     }
+    public double getIncurredCharges() {
+        return incurredCharges;
+    }
+    public void setIncurredCharges(double incurredCharges) {
+        this.incurredCharges = incurredCharges;
+    }
+    
+
+    public double currentIncurredCharges(){
+        return ((this.endDate - this.startDate) * unicorn.getRate());
+    }
+
 
 }

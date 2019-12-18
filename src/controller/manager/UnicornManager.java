@@ -36,41 +36,39 @@ public class UnicornManager{
 		return status;
 	}
 
-	public static int updateUnicorn(Unicorn unicorn){
+	public static int deleteUnicorn(int unicornID) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.jdbc.Driver");
+
+		Connection connection = DriverManager.getConnection(dbAddress, dbUsername, dbPassword);
+		PreparedStatement ps = connection.prepareStatement("DELETE FROM UNICORN WHERE unicornID=?");
+
+		ps.setInt(1, unicornID);
+
+		int status = ps.executeUpdate();
+
+		connection.close();
+
 		int index = -1;
-
-		for (int i = 0; i < unicorns.size(); i++){
-			Unicorn temp = unicorns.get(i);
-
-			if(temp != null && (temp.getUnicornID() == unicorn.getUnicornID())){
-				unicorns.set(index, unicorn);
-				index = i;
-
-				break;
-			}
-		}
-
-		return index;
-	}
-
-	public static int deleteUnicorn(int unicornID){
-		int index = -1;
-
-		for (int i = 0; i < unicorns.size(); i++){
+		for(int i = 0; i < unicorns.size(); i++){
 			Unicorn temp = unicorns.get(i);
 
 			if(temp != null && (temp.getUnicornID() == unicornID)){
-				// unicorns[i] = null;
 				index = i;
 
 				break;
 			}
 		}
 
-		return unicorns.remove(index) != null ? 1 : 0;
+		try {
+			unicorns.remove(index);
+			return status;
+		} catch (Exception e) {
+			return 1 + status;
+		}
+
 	}
 
-	public static Vector<Unicorn> getunicorns() throws ClassNotFoundException, SQLException{
+	public static Vector<Unicorn> getUnicorns() throws ClassNotFoundException, SQLException{
 
 		Class.forName("com.mysql.jdbc.Driver");
 
@@ -99,61 +97,5 @@ public class UnicornManager{
 		return unicorns;
 	}
 	
-	public static Vector<Unicorn> getunicorns(double maxPrice){
-		Vector<Unicorn> temp = new Vector<>();
-		for(Unicorn unicorn : unicorns) {
-			if(unicorn.getPrice() < maxPrice) {
-				temp.add(unicorn);
-			}
-		}
-		
-		return temp;
-	}
-
-	public static Vector<Unicorn> getunicorns(int minCapacity){
-		Vector<Unicorn> temp = new Vector<>();
-		for(Unicorn unicorn : unicorns) {
-			if(unicorn.getCapacity() < minCapacity) {
-				temp.add(unicorn);
-			}
-		}
-		
-		return temp;
-	}
-	
-	public static Vector<Unicorn> getunicorns(boolean auto){
-		Vector<Unicorn> temp = new Vector<>();
-		for(Unicorn unicorn : unicorns) {
-			if(unicorn.isAuto() == auto) {
-				temp.add(unicorn);
-			}
-		}
-		
-		return temp;
-	}
-	
-	public static Vector<Unicorn> getunicorns(String model){
-		Vector<Unicorn> temp = new Vector<>();
-		for(Unicorn unicorn : unicorns) {
-			if(unicorn != null && unicorn.getModel().toLowerCase().contains(model.toLowerCase())) {
-				temp.add(unicorn);
-			}
-		}
-		
-		return temp;
-	}
-	
-	public static Unicorn getUnicorn(int unicornID){
-		Unicorn temp = null;
-		
-		for(Unicorn unicorn : unicorns) {
-			if (unicorn.getUnicornID() == unicornID) {
-				temp = unicorn;
-				break;
-			}
-		}
-		
-		return temp;
-	}
 	
 }

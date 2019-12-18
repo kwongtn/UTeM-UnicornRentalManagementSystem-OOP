@@ -41,7 +41,7 @@ public class MainFrame extends JFrame implements ActionListener {
 		Object source = event.getSource();
 		
 		if(source == btnManageUnicorn) {
-			new ManageUnicornDialog(this);
+			//new ManageUnicornDialog(this);
 		}
 	}
 	

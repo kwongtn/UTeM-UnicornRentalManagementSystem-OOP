@@ -52,7 +52,7 @@ public class ManageUnicornDialog extends JDialog implements ActionListener{
 		} else if (source == btnDeleteUnicorn){
 			new DeleteUnicornDialog(this);
 		} else if (source == btnListUnicorn){
-			// TODO: List Unicorn
+			new ListUnicornDialog(this);
 		}
 
 	}

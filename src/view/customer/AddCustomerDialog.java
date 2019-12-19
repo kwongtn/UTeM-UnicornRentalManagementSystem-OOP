@@ -30,7 +30,7 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField txtCustomerName = new JTextField();
+	private JTextField txtName = new JTextField();
 	private JTextField txtPhoneNo = new JTextField(15);
 	private JTextField txtUnicornLicenseID = new JTextField();
 
@@ -47,7 +47,7 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 		pnlSouth.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
 
 		pnlCenter.add(new JLabel("Name: ", JLabel.RIGHT));
-		pnlCenter.add(txtCustomerName);
+		pnlCenter.add(txtName);
 		pnlCenter.add(new JLabel("PhoneNo: ", JLabel.RIGHT));
 		pnlCenter.add(txtPhoneNo);
 		pnlCenter.add(new JLabel("UnicornLicenseID: ", JLabel.RIGHT));
@@ -76,19 +76,14 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 
 		if (source == btnSubmit) {
 			Vector<Exception> exceptions = new Vector<>();
-			String customerID = null, customerName = null;
+			String Name = null;
 			String phoneNo = null;
-			String unicornLicenseID = null;
+			int unicornLicenseID = 0;
 
 			
-			try {
-				customerID = Validator.validate("CustomerID", txtCustomerID.getText(), true, 15);
-			} catch (RequiredFieldException | MaximumLengthException e) {
-				exceptions.add(e);
-			}
 
 			try {
-				customerName = Validator.validate("Name", txtCustomerName.getText(), true, 15);
+				Name = Validator.validate("Name", txtName.getText(), true, 15);
 			} catch (RequiredFieldException | MaximumLengthException e) {
 				exceptions.add(e);
 			}
@@ -100,7 +95,7 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 			}
 
 			try {
-				unicornLicenseID = Validator.validate("UnicornLicenseID", txtUnicornLicenseID.getText(), true, 20);
+				unicornLicenseID = Validator.validate("UnicornLicenseID", txtUnicornLicenseID.getText(), true, true, true, 12, 4);
 			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
 					| MaximumNumberException e) {
 				exceptions.add(e);
@@ -113,16 +108,15 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 
 				Customer customer = new Customer();
 
-				customer.setCustomerID(customerID);
-				customer.setCustomerName(customerName);
+				customer.setName(Name);
 				customer.setPhoneNo(phoneNo);
 				customer.setUnicornLicenseID(unicornLicenseID);
 	
 
 				try {
-					if (CustomerManager.addCusotmer(customer) != -1) {
+					if (CustomerManager.addCustomer(customer) != -1) {
 						JOptionPane.showMessageDialog(this,
-								"Customer with ID " + customer.getcustomerID() + " has been succesfully added.", "Success",
+								"Customer with ID " + customer.getCustomerID() + " has been succesfully added.", "Success",
 								JOptionPane.INFORMATION_MESSAGE);
 						reset();
 
@@ -156,11 +150,10 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 	}
 
 	private void reset() {
-		txtCustomerID.setText("");
-		txtCustomerName.setText("");
+		txtName.setText("");
 		txtPhoneNo.setText("");
 		txtUnicornLicenseID.setText("");
 
-		txtCustomerID.grabFocus();
+		txtName.grabFocus();
 	}
 }

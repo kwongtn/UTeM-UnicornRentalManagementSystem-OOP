@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controller.manager.UnicornManager;
+import controller.manager.RentalManager;
 import controller.validator.InvalidNumberException;
 import controller.validator.MaximumLengthException;
 import controller.validator.MaximumNumberException;
@@ -34,7 +34,9 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 	private JTextField txtStartDate = new JTextField(15);
 	private JTextField txtEndDate = new JTextField(15);
 	private JTextField txtDepositPaid = new JTextField();
-
+	private JTextField txtAdditionalCharges = new JTextField();
+	private JTextField txtIncurredCharges = new JTextField();
+	private JCheckBox chkReturned = new JCheckBox("Auto");
 	private JButton btnSubmit = new JButton("Submit");
 	private JButton btnReset = new JButton("Reset");
 
@@ -55,6 +57,13 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 		pnlCenter.add(txtEndDate);
 		pnlCenter.add(new JLabel("DepositPaid (RM): ", JLabel.RIGHT));
 		pnlCenter.add(txtDepositPaid);
+		pnlCenter.add(new JLabel("Additional Charges (RM): ", JLabel.RIGHT));
+		pnlCenter.add(txtAdditionalCharges);
+		pnlCenter.add(new JLabel("Icurred Charges (RM): ", JLabel.RIGHT));
+		pnlCenter.add(txtIncurredCharges);
+		pnlCenter.add(new JLabel("Can returned on not?: ", JLabel.RIGHT));
+		pnlCenter.add(chkReturned);
+
 
 		pnlSouth.add(btnSubmit);
 		pnlSouth.add(btnReset);
@@ -78,30 +87,44 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 
 		if (source == btnSubmit) {
 			Vector<Exception> exceptions = new Vector<>();
-			String plateNo = null, model = null;
-			double price = 0;
-			int capacity = 0;
+			int rentalID = 0;
+			long startDate = 0, endDate = 0;
+			double depositPaid = 0, additionalCharges = 0, incurredCharges = 0;
 
 			try {
-				rentalID = Validator.validate("Rental ID", txtRentalID.getText(), true, 15);
-			} catch (RequiredFieldException | MaximumLengthException e) {
+				rentalID = Validator.validate("Rental ID", txtRentalID.getText(), true, true, true, 4, 12);
+			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException | MaximumNumberException e) {
 				exceptions.add(e);
 			}
 
 			try {
-				 startDate = Validator.validate("StartDate", txtStartDate.getText(), true, 50);
-			} catch (RequiredFieldException | MaximumLengthException e) {
+				 startDate = Validator.validate("StartDate", txtStartDate.getText(), true, true, true, 5, 20);
+			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException | MaximumNumberException e) {
 				exceptions.add(e);
 			}
 			
 			try {
-				endDate = Validator.validate("EndDate", txtEndDate.getText(), true, 50);
-			} catch (RequiredFieldException | MaximumLengthException e) {
+				endDate = Validator.validate("EndDate", txtEndDate.getText(), true, true, true, 5 , 20);
+			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException | MaximumNumberException e) {
 				exceptions.add(e);
 			}
 
 			try {
 				depositPaid = Validator.validate("DepositPaid", txtDepositPaid.getText(), true, true, true, 5, 20);
+			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
+					| MaximumNumberException e) {
+				exceptions.add(e);
+			}
+			
+			try {
+				additionalCharges = Validator.validate("AdditionalCharges", txtAdditionalCharges.getText(), true, true, true, 5, 20);
+			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
+					| MaximumNumberException e) {
+				exceptions.add(e);
+			}
+			
+			try {
+				incurredCharges = Validator.validate("IncurredCharges", txtIncurredCharges.getText(), true, true, true, 5, 20);
 			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
 					| MaximumNumberException e) {
 				exceptions.add(e);
@@ -117,12 +140,14 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 				rental.setRentalID(rentalID);
 				rental.setStartDate(startDate);
 				rental.setEndDate(endDate);
-				rental.setDepositPaid(DepositPaid);
+				rental.setDepositPaid(depositPaid);
+				rental.setAdditionalCharges(additionalCharges);
+				rental.setIncurredCharges(incurredCharges);
 
 				try {
-					if (UnicornManager.addUnicorn(unicorn) != -1) {
+					if (RentalManager.addRental(rental) != -1) {
 						JOptionPane.showMessageDialog(this,
-								"Rental with ID " + unicorn.getUnicornID() + " has been succesfully added.", "Success",
+								"Rental with ID " + rental.getUnicornID() + " has been succesfully added.", "Success",
 								JOptionPane.INFORMATION_MESSAGE);
 						reset();
 

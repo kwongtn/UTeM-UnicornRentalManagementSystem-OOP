@@ -33,7 +33,7 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 	private JTextField txtUnicornID = new JTextField();
 	private JTextField txtName = new JTextField(15);
 	private JTextField txtType = new JTextField(15);
-	private JTextField txtPrice = new JTextField();
+	private JTextField txtRate = new JTextField();
 	private JTextField txtColor = new JTextField();
 	private JCheckBox chkAvailable = new JCheckBox("Auto");
 	private JCheckBox chkHeatlhCheck = new JCheckBox("Yes", true);
@@ -55,8 +55,8 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 		pnlCenter.add(txtName);
 		pnlCenter.add(new JLabel("Type: ", JLabel.RIGHT));
 		pnlCenter.add(txtType);
-		pnlCenter.add(new JLabel("Price (RM): ", JLabel.RIGHT));
-		pnlCenter.add(txtPrice);
+		pnlCenter.add(new JLabel("Rate (RM): ", JLabel.RIGHT));
+		pnlCenter.add(txtRate);
 		pnlCenter.add(new JLabel("Color: ", JLabel.RIGHT));
 		pnlCenter.add(txtColor);
 		pnlCenter.add(new JLabel("Is Unicorn Available?: ", JLabel.RIGHT));
@@ -86,13 +86,13 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 
 		if (source == btnSubmit) {
 			Vector<Exception> exceptions = new Vector<>();
-			String plateNo = null, model = null;
-			double price = 0;
-			int capacity = 0;
+			int unicornID = 0;
+			String name = null, type = null, color = null;
+			double rate = 0;
 
 			try {
-				unicornID = Validator.validate("Unicorn ID", txtUnicornID.getText(), true, 15);
-			} catch (RequiredFieldException | MaximumLengthException e) {
+				unicornID = Validator.validate("Unicorn ID", txtUnicornID.getText(), true, true, true, 15, 4);
+			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException | MaximumNumberException e) {
 				exceptions.add(e);
 			}
 
@@ -109,16 +109,15 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 			}
 
 			try {
-				price = Validator.validate("Price", txtPrice.getText(), true, true, true, 5, 20);
+				rate = Validator.validate("Rate", txtRate.getText(), true, true, true, 5, 20);
 			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
 					| MaximumNumberException e) {
 				exceptions.add(e);
 			}
 
 			try {
-				color = Validator.validate("Color", txtColor.getText(), true, true, true, 4, 12);
-			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
-					| MaximumNumberException e) {
+				color = Validator.validate("Color", txtColor.getText(), true, 12);
+			} catch (RequiredFieldException | MaximumLengthException e) {
 				exceptions.add(e);
 			}
 
@@ -131,10 +130,10 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 				unicorn.setUnicornID(unicornID);
 				unicorn.setName(name);
 				unicorn.setType(type);
-				unicorn.setPrice(price);
+				unicorn.setRate(rate);
 				unicorn.setColor(color);
 				unicorn.setAvailable(chkAvailable.isSelected());
-				unicorn.setHeatlhCheck(chkHeatlhCheck.isSelected());
+				unicorn.setHealthCheck(chkHeatlhCheck.isSelected());
 
 				try {
 					if (UnicornManager.addUnicorn(unicorn) != -1) {
@@ -176,7 +175,7 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 		txtUnicornID.setText("");
 		txtName.setText("");
 		txtType.setText("");
-		txtPrice.setText("");
+		txtRate.setText("");
 		txtColor.setText("");
 		chkAvailable.setSelected(false);
 		chkHeatlhCheck.setSelected(true);

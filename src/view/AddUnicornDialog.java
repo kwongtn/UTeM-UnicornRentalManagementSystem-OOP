@@ -1,6 +1,5 @@
 package view;
 
-
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
@@ -25,23 +24,24 @@ import controller.validator.MaximumNumberException;
 import controller.validator.MinimumNumberException;
 import controller.validator.RequiredFieldException;
 import controller.validator.Validator;
-import model.Car;
+import model.Unicorn;
 
 public class AddUnicornDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField txtPlateNo = new JTextField();
-	private JTextField txtModel = new JTextField(15);
+	private JTextField txtUnicornID = new JTextField();
+	private JTextField txtName = new JTextField(15);
+	private JTextField txtType = new JTextField(15);
 	private JTextField txtPrice = new JTextField();
-	private JTextField txtCapacity = new JTextField();
-	private JCheckBox chkAuto = new JCheckBox("Auto");
-	private JCheckBox chkUsable = new JCheckBox("Yes", true);
+	private JTextField txtColor = new JTextField();
+	private JCheckBox chkAvailable = new JCheckBox("Auto");
+	private JCheckBox chkHeatlhCheck = new JCheckBox("Yes", true);
 	private JButton btnSubmit = new JButton("Submit");
 	private JButton btnReset = new JButton("Reset");
 
 	public AddUnicornDialog(ManageUnicornDialog dialog) {
-		super(dialog, "Add Car", true);
+		super(dialog, "Add Unicorn", true);
 
 		JPanel pnlCenter = new JPanel(new GridLayout(6, 2, 10, 10));
 		JPanel pnlSouth = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
@@ -49,18 +49,20 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 		pnlCenter.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
 		pnlSouth.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
 
-		pnlCenter.add(new JLabel("Plate Number: ", JLabel.RIGHT));
-		pnlCenter.add(txtPlateNo);
-		pnlCenter.add(new JLabel("Model: ", JLabel.RIGHT));
-		pnlCenter.add(txtModel);
+		pnlCenter.add(new JLabel("Unicorn ID: ", JLabel.RIGHT));
+		pnlCenter.add(txtUnicornID);
+		pnlCenter.add(new JLabel("Name: ", JLabel.RIGHT));
+		pnlCenter.add(txtName);
+		pnlCenter.add(new JLabel("Type: ", JLabel.RIGHT));
+		pnlCenter.add(txtType);
 		pnlCenter.add(new JLabel("Price (RM): ", JLabel.RIGHT));
 		pnlCenter.add(txtPrice);
-		pnlCenter.add(new JLabel("Capacity: ", JLabel.RIGHT));
-		pnlCenter.add(txtCapacity);
-		pnlCenter.add(new JLabel("Transmission: ", JLabel.RIGHT));
-		pnlCenter.add(chkAuto);
-		pnlCenter.add(new JLabel("Usable: ", JLabel.RIGHT));
-		pnlCenter.add(chkUsable);
+		pnlCenter.add(new JLabel("Color: ", JLabel.RIGHT));
+		pnlCenter.add(txtColor);
+		pnlCenter.add(new JLabel("Is Unicorn Available?: ", JLabel.RIGHT));
+		pnlCenter.add(chkAvailable);
+		pnlCenter.add(new JLabel("Heatlh Checked?: ", JLabel.RIGHT));
+		pnlCenter.add(chkHeatlhCheck);
 
 		pnlSouth.add(btnSubmit);
 		pnlSouth.add(btnReset);
@@ -89,13 +91,19 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 			int capacity = 0;
 
 			try {
-				plateNo = Validator.validate("Plate number", txtPlateNo.getText(), true, 15);
+				unicornID = Validator.validate("Unicorn ID", txtUnicornID.getText(), true, 15);
 			} catch (RequiredFieldException | MaximumLengthException e) {
 				exceptions.add(e);
 			}
 
 			try {
-				model = Validator.validate("Model", txtModel.getText(), true, 50);
+				name = Validator.validate("Name", txtName.getText(), true, 50);
+			} catch (RequiredFieldException | MaximumLengthException e) {
+				exceptions.add(e);
+			}
+			
+			try {
+				type = Validator.validate("Type", txtType.getText(), true, 50);
 			} catch (RequiredFieldException | MaximumLengthException e) {
 				exceptions.add(e);
 			}
@@ -108,7 +116,7 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 			}
 
 			try {
-				capacity = Validator.validate("Capacity", txtCapacity.getText(), true, true, true, 4, 12);
+				color = Validator.validate("Color", txtColor.getText(), true, true, true, 4, 12);
 			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
 					| MaximumNumberException e) {
 				exceptions.add(e);
@@ -118,24 +126,25 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 
 			if (size == 0) {
 
-				Car car = new Car();
+				Unicorn unicorn = new Unicorn();
 
-				car.setPlateNo(plateNo);
-				car.setModel(model);
-				car.setPrice(price);
-				car.setCapacity(capacity);
-				car.setAuto(chkAuto.isSelected());
-				car.setUsable(chkUsable.isSelected());
+				unicorn.setUnicornID(unicornID);
+				unicorn.setName(name);
+				unicorn.setType(type);
+				unicorn.setPrice(price);
+				unicorn.setColor(color);
+				unicorn.setAvailable(chkAvailable.isSelected());
+				unicorn.setHeatlhCheck(chkHeatlhCheck.isSelected());
 
 				try {
-					if (CarManager.addCar(car) != -1) {
+					if (UnicornManager.addUnicorn(unicorn) != -1) {
 						JOptionPane.showMessageDialog(this,
-								"Car with ID " + car.getCarID() + " has been succesfully added.", "Success",
+								"Unicorn with ID " + unicorn.getUnicornID() + " has been succesfully added.", "Success",
 								JOptionPane.INFORMATION_MESSAGE);
 						reset();
 
 					} else {
-						JOptionPane.showMessageDialog(this, "Unable to add new car.", "Unsuccesful",
+						JOptionPane.showMessageDialog(this, "Unable to add new Unicorn.", "Unsuccesful",
 								JOptionPane.WARNING_MESSAGE);
 					}
 				} catch (ClassNotFoundException | SQLException e) {
@@ -164,12 +173,13 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 	}
 
 	private void reset() {
-		txtPlateNo.setText("");
-		txtModel.setText("");
+		txtUnicornID.setText("");
+		txtName.setText("");
+		txtType.setText("");
 		txtPrice.setText("");
-		txtCapacity.setText("");
-		chkAuto.setSelected(false);
-		chkUsable.setSelected(true);
-		txtPlateNo.grabFocus();
+		txtColor.setText("");
+		chkAvailable.setSelected(false);
+		chkHeatlhCheck.setSelected(true);
+		txtUnicornID.grabFocus();
 	}
 }

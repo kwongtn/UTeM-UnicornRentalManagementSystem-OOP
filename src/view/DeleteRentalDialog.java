@@ -28,11 +28,11 @@ import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 
-import controller.manager.UnicornManager;
+import controller.manager.RentalManager;
 import controller.validator.MaximumLengthException;
 import controller.validator.RequiredFieldException;
 import controller.validator.Validator;
-import model.table.UnicornTableModel;
+import model.table.RentalTableModel;
 
 public class DeleteRentalDialog extends JDialog implements ActionListener 
 {

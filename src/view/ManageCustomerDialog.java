@@ -12,7 +12,7 @@ public class ManageCustomerDialog extends JDialog implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	
 	private JButton btnAddCustomer = new JButton("Add Customer");
-	private JButton btnSearchCustomer = new JButton("Search Customer");
+	private JButton btnUpdateCustomer = new JButton("Search Customer");
 	private JButton btnDeleteCustomer = new JButton("Delete Customer");
 	private JButton btnListCustomer = new JButton("List Customer");
 
@@ -22,13 +22,13 @@ public class ManageCustomerDialog extends JDialog implements ActionListener{
 		GridLayout layout = new GridLayout(8, 1, 10, 10);
 		
 		this.add(btnAddCustomer);
-		this.add(btnSearchCustomer);
+		this.add(btnUpdateCustomer);
 		this.add(btnDeleteCustomer);
 		this.add(btnListCustomer);
 
 
 		btnAddCustomer.addActionListener(this);
-		btnSearchCustomer.addActionListener(this);
+		btnUpdateCustomer.addActionListener(this);
 		btnDeleteCustomer.addActionListener(this);
 		btnListCustomer.addActionListener(this);
 

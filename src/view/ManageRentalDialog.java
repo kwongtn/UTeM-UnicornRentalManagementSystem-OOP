@@ -12,7 +12,7 @@ public class ManageRentalDialog extends JDialog implements ActionListener{
 	private static final long serialVersionUID = 1L;
 	
 	private JButton btnAddRental = new JButton("Add Rental");
-	private JButton btnSearchRental = new JButton("Search Rental");
+	private JButton btnUpdateRental = new JButton("Search Rental");
 	private JButton btnDeleteRental = new JButton("Delete Rental");
 	private JButton btnListRental = new JButton("List Rental");
 
@@ -22,13 +22,13 @@ public class ManageRentalDialog extends JDialog implements ActionListener{
 		GridLayout layout = new GridLayout(8, 1, 10, 10);
 		
 		this.add(btnAddRental);
-		this.add(btnSearchRental);
+		this.add(btnUpdateRental);
 		this.add(btnDeleteRental);
 		this.add(btnListRental);
 
 
 		btnAddRental.addActionListener(this);
-		btnSearchRental.addActionListener(this);
+		btnUpdateRental.addActionListener(this);
 		btnDeleteRental.addActionListener(this);
 		btnListRental.addActionListener(this);
 

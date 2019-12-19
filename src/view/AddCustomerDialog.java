@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controller.manager.CusotmerManager;
+import controller.manager.CustomerManager;
 import controller.validator.InvalidNumberException;
 import controller.validator.MaximumLengthException;
 import controller.validator.MaximumNumberException;

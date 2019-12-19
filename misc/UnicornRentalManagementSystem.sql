@@ -36,9 +36,8 @@ CREATE TABLE `RENTAL` (
     `start` LONG NOT NULL,
     `end` LONG NOT NULL,
     `depositPaid` DOUBLE NOT NULL,
-    `payingPrice` DOUBLE NOT NULL,
+    `paidPrice` DOUBLE NOT NULL,
     `returned` BOOLEAN NOT NULL,
-    `userID` INTEGER NOT NULL,
     `creation` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     PRIMARY KEY (`rentalID`)
 );

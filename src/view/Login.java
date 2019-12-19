@@ -1,23 +1,22 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import controller.manager.dbManager;
-
-import javax.swing.JTextField;
-import javax.swing.JButton;
-
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
-import java.awt.event.ActionEvent;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.Color;
-import javax.swing.JPasswordField;
 
 public class Login extends JFrame implements ActionListener {
     private static final long serialVersionUID = 1L;
@@ -118,7 +117,7 @@ public class Login extends JFrame implements ActionListener {
                 if (temp) {
                     System.out.println("Username and password correct.");
                     dispose();
-                    // TODO : Add link to main menu
+                    new MainFrame();
                 } else {
                     System.out.println("Username or Password incorrect.");
                     JOptionPane.showMessageDialog(this, "Username or password incorrect.", "Error", JOptionPane.WARNING_MESSAGE);

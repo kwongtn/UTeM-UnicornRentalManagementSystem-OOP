@@ -1,4 +1,4 @@
-package view;
+package view.unicorn;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+
+import view.MainFrame;
 
 public class ManageUnicornDialog extends JDialog implements ActionListener{
 	

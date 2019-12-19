@@ -1,4 +1,4 @@
-package view;
+package view.unicorn;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -24,22 +24,24 @@ import controller.validator.MaximumNumberException;
 import controller.validator.MinimumNumberException;
 import controller.validator.RequiredFieldException;
 import controller.validator.Validator;
-import model.Rental;
+import model.Unicorn;
 
-public class AddRentalDialog extends JDialog implements ActionListener {
+public class AddUnicornDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField txtRentalID = new JTextField();
-	private JTextField txtStartDate = new JTextField(15);
-	private JTextField txtEndDate = new JTextField(15);
-	private JTextField txtDepositPaid = new JTextField();
-
+	private JTextField txtUnicornID = new JTextField();
+	private JTextField txtName = new JTextField(15);
+	private JTextField txtType = new JTextField(15);
+	private JTextField txtPrice = new JTextField();
+	private JTextField txtColor = new JTextField();
+	private JCheckBox chkAvailable = new JCheckBox("Auto");
+	private JCheckBox chkHeatlhCheck = new JCheckBox("Yes", true);
 	private JButton btnSubmit = new JButton("Submit");
 	private JButton btnReset = new JButton("Reset");
 
-	public AddRentalDialog(ManageRentalDialog dialog) {
-		super(dialog, "Add Rental", true);
+	public AddUnicornDialog(ManageUnicornDialog dialog) {
+		super(dialog, "Add Unicorn", true);
 
 		JPanel pnlCenter = new JPanel(new GridLayout(6, 2, 10, 10));
 		JPanel pnlSouth = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
@@ -47,14 +49,20 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 		pnlCenter.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
 		pnlSouth.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
 
-		pnlCenter.add(new JLabel("Rental ID: ", JLabel.RIGHT));
-		pnlCenter.add(txtRentalID);
-		pnlCenter.add(new JLabel("StartDate: ", JLabel.RIGHT));
-		pnlCenter.add(txtStartDate);
-		pnlCenter.add(new JLabel("EndDate: ", JLabel.RIGHT));
-		pnlCenter.add(txtEndDate);
-		pnlCenter.add(new JLabel("DepositPaid (RM): ", JLabel.RIGHT));
-		pnlCenter.add(txtDepositPaid);
+		pnlCenter.add(new JLabel("Unicorn ID: ", JLabel.RIGHT));
+		pnlCenter.add(txtUnicornID);
+		pnlCenter.add(new JLabel("Name: ", JLabel.RIGHT));
+		pnlCenter.add(txtName);
+		pnlCenter.add(new JLabel("Type: ", JLabel.RIGHT));
+		pnlCenter.add(txtType);
+		pnlCenter.add(new JLabel("Price (RM): ", JLabel.RIGHT));
+		pnlCenter.add(txtPrice);
+		pnlCenter.add(new JLabel("Color: ", JLabel.RIGHT));
+		pnlCenter.add(txtColor);
+		pnlCenter.add(new JLabel("Is Unicorn Available?: ", JLabel.RIGHT));
+		pnlCenter.add(chkAvailable);
+		pnlCenter.add(new JLabel("Heatlh Checked?: ", JLabel.RIGHT));
+		pnlCenter.add(chkHeatlhCheck);
 
 		pnlSouth.add(btnSubmit);
 		pnlSouth.add(btnReset);
@@ -83,51 +91,60 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 			int capacity = 0;
 
 			try {
-				rentalID = Validator.validate("Rental ID", txtRentalID.getText(), true, 15);
+				unicornID = Validator.validate("Unicorn ID", txtUnicornID.getText(), true, 15);
 			} catch (RequiredFieldException | MaximumLengthException e) {
 				exceptions.add(e);
 			}
 
 			try {
-				 startDate = Validator.validate("StartDate", txtStartDate.getText(), true, 50);
+				name = Validator.validate("Name", txtName.getText(), true, 50);
 			} catch (RequiredFieldException | MaximumLengthException e) {
 				exceptions.add(e);
 			}
 			
 			try {
-				endDate = Validator.validate("EndDate", txtEndDate.getText(), true, 50);
+				type = Validator.validate("Type", txtType.getText(), true, 50);
 			} catch (RequiredFieldException | MaximumLengthException e) {
 				exceptions.add(e);
 			}
 
 			try {
-				depositPaid = Validator.validate("DepositPaid", txtDepositPaid.getText(), true, true, true, 5, 20);
+				price = Validator.validate("Price", txtPrice.getText(), true, true, true, 5, 20);
 			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
 					| MaximumNumberException e) {
 				exceptions.add(e);
 			}
 
+			try {
+				color = Validator.validate("Color", txtColor.getText(), true, true, true, 4, 12);
+			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
+					| MaximumNumberException e) {
+				exceptions.add(e);
+			}
 
 			int size = exceptions.size();
 
 			if (size == 0) {
 
-				Rental rental = new Rental();
+				Unicorn unicorn = new Unicorn();
 
-				rental.setRentalID(rentalID);
-				rental.setStartDate(startDate);
-				rental.setEndDate(endDate);
-				rental.setDepositPaid(DepositPaid);
+				unicorn.setUnicornID(unicornID);
+				unicorn.setName(name);
+				unicorn.setType(type);
+				unicorn.setPrice(price);
+				unicorn.setColor(color);
+				unicorn.setAvailable(chkAvailable.isSelected());
+				unicorn.setHeatlhCheck(chkHeatlhCheck.isSelected());
 
 				try {
 					if (UnicornManager.addUnicorn(unicorn) != -1) {
 						JOptionPane.showMessageDialog(this,
-								"Rental with ID " + unicorn.getUnicornID() + " has been succesfully added.", "Success",
+								"Unicorn with ID " + unicorn.getUnicornID() + " has been succesfully added.", "Success",
 								JOptionPane.INFORMATION_MESSAGE);
 						reset();
 
 					} else {
-						JOptionPane.showMessageDialog(this, "Unable to add new Rental.", "Unsuccesful",
+						JOptionPane.showMessageDialog(this, "Unable to add new Unicorn.", "Unsuccesful",
 								JOptionPane.WARNING_MESSAGE);
 					}
 				} catch (ClassNotFoundException | SQLException e) {
@@ -156,11 +173,13 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 	}
 
 	private void reset() {
-		txtRentalID.setText("");
-		txtStartDate.setText("");
-		txtEndDate.setText("");
-		txtDepositPaid.setText("");
-
-		txtRentalID.grabFocus();
+		txtUnicornID.setText("");
+		txtName.setText("");
+		txtType.setText("");
+		txtPrice.setText("");
+		txtColor.setText("");
+		chkAvailable.setSelected(false);
+		chkHeatlhCheck.setSelected(true);
+		txtUnicornID.grabFocus();
 	}
 }

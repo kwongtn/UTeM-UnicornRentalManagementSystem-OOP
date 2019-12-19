@@ -1,4 +1,4 @@
-package view;
+package view.rental;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -17,29 +17,29 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controller.manager.CustomerManager;
+import controller.manager.UnicornManager;
 import controller.validator.InvalidNumberException;
 import controller.validator.MaximumLengthException;
 import controller.validator.MaximumNumberException;
 import controller.validator.MinimumNumberException;
 import controller.validator.RequiredFieldException;
 import controller.validator.Validator;
-import model.Customer;
+import model.Rental;
 
-public class AddCustomerDialog extends JDialog implements ActionListener {
+public class AddRentalDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField txtCustomerID = new JTextField();
-	private JTextField txtCustomerName = new JTextField();
-	private JTextField txtPhoneNo = new JTextField(15);
-	private JTextField txtUnicornLicenseID = new JTextField();
+	private JTextField txtRentalID = new JTextField();
+	private JTextField txtStartDate = new JTextField(15);
+	private JTextField txtEndDate = new JTextField(15);
+	private JTextField txtDepositPaid = new JTextField();
 
 	private JButton btnSubmit = new JButton("Submit");
 	private JButton btnReset = new JButton("Reset");
 
-	public AddCustomerDialog(ManageUnicornDialog dialog) {
-		super(dialog, "Add Customer", true);
+	public AddRentalDialog(ManageRentalDialog dialog) {
+		super(dialog, "Add Rental", true);
 
 		JPanel pnlCenter = new JPanel(new GridLayout(6, 2, 10, 10));
 		JPanel pnlSouth = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
@@ -47,15 +47,14 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 		pnlCenter.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
 		pnlSouth.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
 
-		pnlCenter.add(new JLabel("CusotmerID: ", JLabel.RIGHT));
-		pnlCenter.add(txtCustomerID);
-		pnlCenter.add(new JLabel("Name: ", JLabel.RIGHT));
-		pnlCenter.add(txtCustomerName);
-		pnlCenter.add(new JLabel("PhoneNo: ", JLabel.RIGHT));
-		pnlCenter.add(txtPhoneNo);
-		pnlCenter.add(new JLabel("UnicornLicenseID: ", JLabel.RIGHT));
-		pnlCenter.add(txtUnicornLicenseID);
-
+		pnlCenter.add(new JLabel("Rental ID: ", JLabel.RIGHT));
+		pnlCenter.add(txtRentalID);
+		pnlCenter.add(new JLabel("StartDate: ", JLabel.RIGHT));
+		pnlCenter.add(txtStartDate);
+		pnlCenter.add(new JLabel("EndDate: ", JLabel.RIGHT));
+		pnlCenter.add(txtEndDate);
+		pnlCenter.add(new JLabel("DepositPaid (RM): ", JLabel.RIGHT));
+		pnlCenter.add(txtDepositPaid);
 
 		pnlSouth.add(btnSubmit);
 		pnlSouth.add(btnReset);
@@ -79,31 +78,30 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 
 		if (source == btnSubmit) {
 			Vector<Exception> exceptions = new Vector<>();
-			String customerID = null, customerName = null;
-			String phoneNo = null;
-			String unicornLicenseID = null;
+			String plateNo = null, model = null;
+			double price = 0;
+			int capacity = 0;
 
+			try {
+				rentalID = Validator.validate("Rental ID", txtRentalID.getText(), true, 15);
+			} catch (RequiredFieldException | MaximumLengthException e) {
+				exceptions.add(e);
+			}
+
+			try {
+				 startDate = Validator.validate("StartDate", txtStartDate.getText(), true, 50);
+			} catch (RequiredFieldException | MaximumLengthException e) {
+				exceptions.add(e);
+			}
 			
 			try {
-				customerID = Validator.validate("CustomerID", txtCustomerID.getText(), true, 15);
+				endDate = Validator.validate("EndDate", txtEndDate.getText(), true, 50);
 			} catch (RequiredFieldException | MaximumLengthException e) {
 				exceptions.add(e);
 			}
 
 			try {
-				customerName = Validator.validate("Name", txtCustomerName.getText(), true, 15);
-			} catch (RequiredFieldException | MaximumLengthException e) {
-				exceptions.add(e);
-			}
-
-			try {
-				phoneNo = Validator.validate("PhoneNo", txtPhoneNo.getText(), true, 50);
-			} catch (RequiredFieldException | MaximumLengthException e) {
-				exceptions.add(e);
-			}
-
-			try {
-				unicornLicenseID = Validator.validate("UnicornLicenseID", txtUnicornLicenseID.getText(), true, 20);
+				depositPaid = Validator.validate("DepositPaid", txtDepositPaid.getText(), true, true, true, 5, 20);
 			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
 					| MaximumNumberException e) {
 				exceptions.add(e);
@@ -114,23 +112,22 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 
 			if (size == 0) {
 
-				Customer customer = new Customer();
+				Rental rental = new Rental();
 
-				customer.setCustomerID(customerID);
-				customer.setCustomerName(customerName);
-				customer.setPhoneNo(phoneNo);
-				customer.setUnicornLicenseID(unicornLicenseID);
-	
+				rental.setRentalID(rentalID);
+				rental.setStartDate(startDate);
+				rental.setEndDate(endDate);
+				rental.setDepositPaid(DepositPaid);
 
 				try {
-					if (CustomerManager.addCusotmer(customer) != -1) {
+					if (UnicornManager.addUnicorn(unicorn) != -1) {
 						JOptionPane.showMessageDialog(this,
-								"Customer with ID " + customer.getcustomerID() + " has been succesfully added.", "Success",
+								"Rental with ID " + unicorn.getUnicornID() + " has been succesfully added.", "Success",
 								JOptionPane.INFORMATION_MESSAGE);
 						reset();
 
 					} else {
-						JOptionPane.showMessageDialog(this, "Unable to add new car.", "Unsuccesful",
+						JOptionPane.showMessageDialog(this, "Unable to add new Rental.", "Unsuccesful",
 								JOptionPane.WARNING_MESSAGE);
 					}
 				} catch (ClassNotFoundException | SQLException e) {
@@ -159,11 +156,11 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 	}
 
 	private void reset() {
-		txtCustomerID.setText("");
-		txtCustomerName.setText("");
-		txtPhoneNo.setText("");
-		txtUnicornLicenseID.setText("");
+		txtRentalID.setText("");
+		txtStartDate.setText("");
+		txtEndDate.setText("");
+		txtDepositPaid.setText("");
 
-		txtCustomerID.grabFocus();
+		txtRentalID.grabFocus();
 	}
 }

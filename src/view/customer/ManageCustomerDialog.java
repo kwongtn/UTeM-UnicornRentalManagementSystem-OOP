@@ -1,4 +1,4 @@
-package view;
+package view.customer;
 
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
@@ -6,6 +6,8 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JDialog;
+
+import view.MainFrame;
 
 public class ManageCustomerDialog extends JDialog implements ActionListener{
 	
@@ -16,7 +18,7 @@ public class ManageCustomerDialog extends JDialog implements ActionListener{
 	private JButton btnDeleteCustomer = new JButton("Delete Customer");
 	private JButton btnListCustomer = new JButton("List Customer");
 
-	public ManageCusotmerDialog(MainFrame frame){
+	public ManageCustomerDialog(MainFrame frame){
 		super(frame, "Manage Customer", true);
 		
 		GridLayout layout = new GridLayout(8, 1, 10, 10);
@@ -43,10 +45,14 @@ public class ManageCustomerDialog extends JDialog implements ActionListener{
 	public void actionPerformed(ActionEvent event) {
 		Object source = event.getSource();
 
-		if(source == btnAddUnicorn){
-			new AddCarDialog(this);
-		} else if (source == btnViewAllCars){
-			new ViewCarsDialog(this);
+		if(source == btnAddCustomer){
+			new AddCustomerDialog(this);
+		} else if (source == btnUpdateCustomer){
+			// TODO: Add ViewCustomers dialog box
+		} else if (source == btnDeleteCustomer){
+
+		} else if (source == btnListCustomer){
+
 		}
 
 	}

@@ -1,4 +1,4 @@
-package view;
+package view.customer;
 
 import java.awt.BorderLayout;
 
@@ -32,7 +32,8 @@ import controller.manager.CustomerManager;
 import controller.validator.MaximumLengthException;
 import controller.validator.RequiredFieldException;
 import controller.validator.Validator;
-import model.table.CustomerTableModel;
+
+import controller.manager.UnicornManager;;
 
 public class DeleteCustomerDialog extends JDialog implements ActionListener 
 {

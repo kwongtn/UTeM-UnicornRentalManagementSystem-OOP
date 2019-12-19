@@ -1,4 +1,4 @@
-package view;
+package view.customer;
 
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
@@ -17,31 +17,29 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controller.manager.UnicornManager;
+import controller.manager.CustomerManager;
 import controller.validator.InvalidNumberException;
 import controller.validator.MaximumLengthException;
 import controller.validator.MaximumNumberException;
 import controller.validator.MinimumNumberException;
 import controller.validator.RequiredFieldException;
 import controller.validator.Validator;
-import model.Unicorn;
+import model.Customer;
 
-public class AddUnicornDialog extends JDialog implements ActionListener {
+public class AddCustomerDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField txtUnicornID = new JTextField();
-	private JTextField txtName = new JTextField(15);
-	private JTextField txtType = new JTextField(15);
-	private JTextField txtPrice = new JTextField();
-	private JTextField txtColor = new JTextField();
-	private JCheckBox chkAvailable = new JCheckBox("Auto");
-	private JCheckBox chkHeatlhCheck = new JCheckBox("Yes", true);
+	private JTextField txtCustomerID = new JTextField();
+	private JTextField txtCustomerName = new JTextField();
+	private JTextField txtPhoneNo = new JTextField(15);
+	private JTextField txtUnicornLicenseID = new JTextField();
+
 	private JButton btnSubmit = new JButton("Submit");
 	private JButton btnReset = new JButton("Reset");
 
-	public AddUnicornDialog(ManageUnicornDialog dialog) {
-		super(dialog, "Add Unicorn", true);
+	public AddCustomerDialog(ManageCustomerDialog dialog) {
+		super(dialog, "Add Customer", true);
 
 		JPanel pnlCenter = new JPanel(new GridLayout(6, 2, 10, 10));
 		JPanel pnlSouth = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
@@ -49,20 +47,15 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 		pnlCenter.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
 		pnlSouth.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
 
-		pnlCenter.add(new JLabel("Unicorn ID: ", JLabel.RIGHT));
-		pnlCenter.add(txtUnicornID);
+		pnlCenter.add(new JLabel("CustomerID: ", JLabel.RIGHT));
+		pnlCenter.add(txtCustomerID);
 		pnlCenter.add(new JLabel("Name: ", JLabel.RIGHT));
-		pnlCenter.add(txtName);
-		pnlCenter.add(new JLabel("Type: ", JLabel.RIGHT));
-		pnlCenter.add(txtType);
-		pnlCenter.add(new JLabel("Price (RM): ", JLabel.RIGHT));
-		pnlCenter.add(txtPrice);
-		pnlCenter.add(new JLabel("Color: ", JLabel.RIGHT));
-		pnlCenter.add(txtColor);
-		pnlCenter.add(new JLabel("Is Unicorn Available?: ", JLabel.RIGHT));
-		pnlCenter.add(chkAvailable);
-		pnlCenter.add(new JLabel("Heatlh Checked?: ", JLabel.RIGHT));
-		pnlCenter.add(chkHeatlhCheck);
+		pnlCenter.add(txtCustomerName);
+		pnlCenter.add(new JLabel("PhoneNo: ", JLabel.RIGHT));
+		pnlCenter.add(txtPhoneNo);
+		pnlCenter.add(new JLabel("UnicornLicenseID: ", JLabel.RIGHT));
+		pnlCenter.add(txtUnicornLicenseID);
+
 
 		pnlSouth.add(btnSubmit);
 		pnlSouth.add(btnReset);
@@ -86,65 +79,58 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 
 		if (source == btnSubmit) {
 			Vector<Exception> exceptions = new Vector<>();
-			String plateNo = null, model = null;
-			double price = 0;
-			int capacity = 0;
+			String customerID = null, customerName = null;
+			String phoneNo = null;
+			String unicornLicenseID = null;
 
-			try {
-				unicornID = Validator.validate("Unicorn ID", txtUnicornID.getText(), true, 15);
-			} catch (RequiredFieldException | MaximumLengthException e) {
-				exceptions.add(e);
-			}
-
-			try {
-				name = Validator.validate("Name", txtName.getText(), true, 50);
-			} catch (RequiredFieldException | MaximumLengthException e) {
-				exceptions.add(e);
-			}
 			
 			try {
-				type = Validator.validate("Type", txtType.getText(), true, 50);
+				customerID = Validator.validate("CustomerID", txtCustomerID.getText(), true, 15);
 			} catch (RequiredFieldException | MaximumLengthException e) {
 				exceptions.add(e);
 			}
 
 			try {
-				price = Validator.validate("Price", txtPrice.getText(), true, true, true, 5, 20);
+				customerName = Validator.validate("Name", txtCustomerName.getText(), true, 15);
+			} catch (RequiredFieldException | MaximumLengthException e) {
+				exceptions.add(e);
+			}
+
+			try {
+				phoneNo = Validator.validate("PhoneNo", txtPhoneNo.getText(), true, 50);
+			} catch (RequiredFieldException | MaximumLengthException e) {
+				exceptions.add(e);
+			}
+
+			try {
+				unicornLicenseID = Validator.validate("UnicornLicenseID", txtUnicornLicenseID.getText(), true, 20);
 			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
 					| MaximumNumberException e) {
 				exceptions.add(e);
 			}
 
-			try {
-				color = Validator.validate("Color", txtColor.getText(), true, true, true, 4, 12);
-			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
-					| MaximumNumberException e) {
-				exceptions.add(e);
-			}
 
 			int size = exceptions.size();
 
 			if (size == 0) {
 
-				Unicorn unicorn = new Unicorn();
+				Customer customer = new Customer();
 
-				unicorn.setUnicornID(unicornID);
-				unicorn.setName(name);
-				unicorn.setType(type);
-				unicorn.setPrice(price);
-				unicorn.setColor(color);
-				unicorn.setAvailable(chkAvailable.isSelected());
-				unicorn.setHeatlhCheck(chkHeatlhCheck.isSelected());
+				customer.setCustomerID(customerID);
+				customer.setCustomerName(customerName);
+				customer.setPhoneNo(phoneNo);
+				customer.setUnicornLicenseID(unicornLicenseID);
+	
 
 				try {
-					if (UnicornManager.addUnicorn(unicorn) != -1) {
+					if (CustomerManager.addCusotmer(customer) != -1) {
 						JOptionPane.showMessageDialog(this,
-								"Unicorn with ID " + unicorn.getUnicornID() + " has been succesfully added.", "Success",
+								"Customer with ID " + customer.getcustomerID() + " has been succesfully added.", "Success",
 								JOptionPane.INFORMATION_MESSAGE);
 						reset();
 
 					} else {
-						JOptionPane.showMessageDialog(this, "Unable to add new Unicorn.", "Unsuccesful",
+						JOptionPane.showMessageDialog(this, "Unable to add new car.", "Unsuccesful",
 								JOptionPane.WARNING_MESSAGE);
 					}
 				} catch (ClassNotFoundException | SQLException e) {
@@ -173,13 +159,11 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 	}
 
 	private void reset() {
-		txtUnicornID.setText("");
-		txtName.setText("");
-		txtType.setText("");
-		txtPrice.setText("");
-		txtColor.setText("");
-		chkAvailable.setSelected(false);
-		chkHeatlhCheck.setSelected(true);
-		txtUnicornID.grabFocus();
+		txtCustomerID.setText("");
+		txtCustomerName.setText("");
+		txtPhoneNo.setText("");
+		txtUnicornLicenseID.setText("");
+
+		txtCustomerID.grabFocus();
 	}
 }

@@ -86,6 +86,7 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 
 			String name = null, type = null, color = null;
 			double rate = 0;
+			// TODO : Add "your unicornID is xx" dialog after succesful add
 
 			try {
 				name = Validator.validate("Name", txtName.getText(), true, 50);

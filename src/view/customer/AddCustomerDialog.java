@@ -10,7 +10,6 @@ import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -18,10 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import controller.manager.CustomerManager;
-import controller.validator.InvalidNumberException;
 import controller.validator.MaximumLengthException;
-import controller.validator.MaximumNumberException;
-import controller.validator.MinimumNumberException;
 import controller.validator.RequiredFieldException;
 import controller.validator.Validator;
 import model.Customer;
@@ -40,7 +36,7 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 	public AddCustomerDialog(ManageCustomerDialog dialog) {
 		super(dialog, "Add Customer", true);
 
-		JPanel pnlCenter = new JPanel(new GridLayout(6, 2, 10, 10));
+		JPanel pnlCenter = new JPanel(new GridLayout(3, 2, 10, 10));
 		JPanel pnlSouth = new JPanel(new FlowLayout(FlowLayout.RIGHT, 10, 0));
 
 		pnlCenter.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
@@ -76,14 +72,14 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 
 		if (source == btnSubmit) {
 			Vector<Exception> exceptions = new Vector<>();
-			String Name = null;
+			String customerName = null;
 			String phoneNo = null;
 			int unicornLicenseID = 0;
 
 			
 
 			try {
-				Name = Validator.validate("Name", txtName.getText(), true, 15);
+				customerName = Validator.validate("Name", txtName.getText(), true, 15);
 			} catch (RequiredFieldException | MaximumLengthException e) {
 				exceptions.add(e);
 			}
@@ -95,9 +91,8 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 			}
 
 			try {
-				unicornLicenseID = Validator.validate("UnicornLicenseID", txtUnicornLicenseID.getText(), true, true, true, 12, 4);
-			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
-					| MaximumNumberException e) {
+				unicornLicenseID = Integer.parseInt(Validator.validate("UnicornLicenseID", txtUnicornLicenseID.getText(), true, 20));
+			} catch (RequiredFieldException | MaximumLengthException e) {
 				exceptions.add(e);
 			}
 
@@ -108,7 +103,7 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 
 				Customer customer = new Customer();
 
-				customer.setName(Name);
+				customer.setName(customerName);
 				customer.setPhoneNo(phoneNo);
 				customer.setUnicornLicenseID(unicornLicenseID);
 	

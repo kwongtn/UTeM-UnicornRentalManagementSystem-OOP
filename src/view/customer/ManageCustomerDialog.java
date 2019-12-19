@@ -52,7 +52,7 @@ public class ManageCustomerDialog extends JDialog implements ActionListener{
 		} else if (source == btnDeleteCustomer){
 			new DeleteCustomerDialog(this);
 		} else if (source == btnListCustomer){
-			// TODO: Add ListCustomer dialog box
+			new ListCustomerDialog(this);
 		}
 
 	}

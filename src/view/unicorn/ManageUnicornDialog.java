@@ -21,7 +21,7 @@ public class ManageUnicornDialog extends JDialog implements ActionListener{
 	public ManageUnicornDialog(MainFrame frame) {
 		super(frame, "Manage Unicorn", true);
 		
-		GridLayout layout = new GridLayout(8, 1, 10, 10);
+		GridLayout layout = new GridLayout(4, 1, 10, 10);
 		
 		this.add(btnAddUnicorn);
 		this.add(btnUpdateUnicorn);

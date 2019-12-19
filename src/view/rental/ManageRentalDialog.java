@@ -21,7 +21,7 @@ public class ManageRentalDialog extends JDialog implements ActionListener{
 	public ManageRentalDialog(MainFrame frame) {
 		super(frame, "Manage Rental", true);
 		
-		GridLayout layout = new GridLayout(8, 1, 10, 10);
+		GridLayout layout = new GridLayout(4, 1, 10, 10);
 		
 		this.add(btnAddRental);
 		this.add(btnSearchRental);

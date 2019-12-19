@@ -18,7 +18,7 @@ public class ManageUnicornDialog extends JDialog implements ActionListener{
 	private JButton btnDeleteUnicorn = new JButton("Delete Unicorn");
 	private JButton btnListUnicorn = new JButton("List Unicorn");
 
-	public void ManageUnicornDialog(MainFrame frame) {
+	public ManageUnicornDialog(MainFrame frame) {
 		super(frame, "Manage Unicorn", true);
 		
 		GridLayout layout = new GridLayout(8, 1, 10, 10);
@@ -47,6 +47,12 @@ public class ManageUnicornDialog extends JDialog implements ActionListener{
 
 		if(source == btnAddUnicorn){
 			new AddUnicornDialog(this);
+		} else if (source == btnUpdateUnicorn){
+			// TODO: Add update unicorn button action
+		} else if (source == btnDeleteUnicorn){
+			new DeleteUnicornDialog(this);
+		} else if (source == btnListUnicorn){
+			// TODO: List Unicorn
 		}
 
 	}

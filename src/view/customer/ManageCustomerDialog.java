@@ -21,7 +21,7 @@ public class ManageCustomerDialog extends JDialog implements ActionListener{
 	public ManageCustomerDialog(MainFrame frame){
 		super(frame, "Manage Customer", true);
 		
-		GridLayout layout = new GridLayout(8, 1, 10, 10);
+		GridLayout layout = new GridLayout(4, 1, 10, 10);
 		
 		this.add(btnAddCustomer);
 		this.add(btnUpdateCustomer);
@@ -50,9 +50,9 @@ public class ManageCustomerDialog extends JDialog implements ActionListener{
 		} else if (source == btnUpdateCustomer){
 			// TODO: Add ViewCustomers dialog box
 		} else if (source == btnDeleteCustomer){
-
+			new DeleteCustomerDialog(this);
 		} else if (source == btnListCustomer){
-
+			// TODO: Add ListCustomer dialog box
 		}
 
 	}

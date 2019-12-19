@@ -7,6 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 
+import view.unicorn.ManageUnicornDialog;
+import view.customer.ManageCustomerDialog;
+import view.rental.ManageRentalDialog;
+
 public class MainFrame extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
@@ -45,18 +49,24 @@ public class MainFrame extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		Object source = event.getSource();
-		
+
 		if(source == btnManageUnicorn) {
+			System.out.println("Manage Unicorn selected.");
 			new ManageUnicornDialog(this);
 		}
 		else if(source == btnManageCustomers) {
+			System.out.println("Manage Customer selected.");
 			new ManageCustomerDialog(this);
 		}
 		else if(source == btnManageRentals) {
+			System.out.println("Manage Rental selected.");
 			new ManageRentalDialog(this);
 		} else if(source == btnTestDb){
+			System.out.println("Test db selected.");
+
 
 		} else if (source == btnExit){
+			System.out.println("Exit selected.");
 			System.exit(0);
 		}
 	}

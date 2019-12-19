@@ -117,4 +117,17 @@ public class CustomerManager extends dbManager{
 		return customers;
 	}
 
+	public static Customer getCustomerByID(int customerID) throws ClassNotFoundException, SQLException{
+		Vector<Customer> customers = getCustomers();
+
+		for(int i = 0; i < customers.size(); i++){
+			Customer customer = customers.get(i);
+			if(customer.getCustomerID() == customerID){
+				return customer;
+			}
+		}
+		
+		return null;
+	}
+
 }

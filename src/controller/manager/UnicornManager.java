@@ -126,4 +126,18 @@ public class UnicornManager extends dbManager{
 		return unicorns;
 	}
 
+	public static Unicorn getUnicornByID(int unicornID) throws ClassNotFoundException, SQLException{
+		Vector<Unicorn> unicorns = getUnicorns();
+
+		for(int i = 0; i < unicorns.size(); i++){
+			Unicorn unicorn = unicorns.get(i);
+			if(unicorn.getUnicornID() == unicornID){
+				return unicorn;
+			}
+		}
+		
+		return null;
+	}
+
+
 }

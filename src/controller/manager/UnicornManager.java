@@ -9,13 +9,9 @@ import java.util.Vector;
 
 import model.Unicorn;
 
-public class UnicornManager {
+public class UnicornManager extends dbManager{
 
 	private static Vector<Unicorn> unicorns = new Vector<>();
-
-	private static String dbAddress = "jdbc:mysql://localhost:8080/UNICORNDB";
-	private static String dbUsername = "root";
-	private static String dbPassword = "password";
 
 	public static int addUnicorn(Unicorn unicorn) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
@@ -32,7 +28,7 @@ public class UnicornManager {
 
 		int status = ps.executeUpdate();
 
-		unicorn.setUnicornID(connection.prepareStatement("SELECT MAX(UnicornID) FROM UNICORN").executeQuery().getInt(1));
+		unicorn.setUnicornID(connection.prepareStatement("SELECT MAX(unicornID) FROM UNICORN").executeQuery().getInt(1));
 
 		connection.close();
 

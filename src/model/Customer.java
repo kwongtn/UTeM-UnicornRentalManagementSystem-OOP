@@ -1,17 +1,16 @@
 package model;
 
-public class Customer extends Model{
-    private static int LATEST_ID;
+public class Customer{
+    private int customerID;
     private String name;
     private String phoneNo;
     private int unicornLicenseID;
 
-    // Getter & Setter for customerID
-    public Customer(int customerID){
-        super(++LATEST_ID);
+    public void setCustomerID(int customerID){
+        this.customerID = customerID;
     }
     public int getCustomerID(){
-        return super.getUniqueID();
+        return customerID;
     }
 
     /**

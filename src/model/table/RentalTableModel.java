@@ -17,19 +17,17 @@ public class RentalTableModel extends DefaultTableModel {
             Rental rental = rentals.get(i);
 
             data[i][0] = String.valueOf(rental.getRentalID());
-            data[i][1] = String.valueOf(rental.getUnicorn());
-            data[i][2] = String.valueOf(rental.getUnicornID());
-            data[i][3] = String.valueOf(rental.getCustomer());
-            data[i][4] = String.valueOf(rental.getCustomerID());
-            data[i][5] = String.valueOf(rental.getStartDate());
-            data[i][6] = String.valueOf(rental.getEndDate());
-            data[i][7] = String.valueOf(rental.getDepositPaid());
-            data[i][8] = String.valueOf(rental.getAdditionalCharges());
-            data[i][9] = String.valueOf(rental.getIncurredCharges());
-  
+            data[i][1] = String.valueOf(rental.getUnicornID());
+            data[i][2] = String.valueOf(rental.getCustomerID());
+            data[i][3] = String.valueOf(rental.getStartDate());
+            data[i][4] = String.valueOf(rental.getEndDate());
+            data[i][5] = String.valueOf(rental.getDepositPaid());
+            data[i][6] = String.valueOf(rental.getIncurredCharges());
+            data[i][7] = String.valueOf(rental.isReturned());
+            
         }
 
-        setDataVector(data, new String[] { "Rental ID", "Unicorn", "Unicorn ID", "Customer", "Customer ID", "Start date", "End date", "Deposit Paid", "Additional Charges", "Incurred Charges" });
+        setDataVector(data, new String[] { "RentalID", "UnicornID", "CustomerID", "Start Date", "End Date", "Deposit Paid", "Incurred Charges", "Returned?" });
     }
 
 }

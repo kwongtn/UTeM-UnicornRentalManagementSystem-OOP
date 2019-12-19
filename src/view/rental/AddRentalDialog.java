@@ -30,7 +30,6 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField txtRentalID = new JTextField();
 	private JTextField txtStartDate = new JTextField(15);
 	private JTextField txtEndDate = new JTextField(15);
 	private JTextField txtDepositPaid = new JTextField();
@@ -49,8 +48,6 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 		pnlCenter.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
 		pnlSouth.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
 
-		pnlCenter.add(new JLabel("Rental ID: ", JLabel.RIGHT));
-		pnlCenter.add(txtRentalID);
 		pnlCenter.add(new JLabel("StartDate: ", JLabel.RIGHT));
 		pnlCenter.add(txtStartDate);
 		pnlCenter.add(new JLabel("EndDate: ", JLabel.RIGHT));
@@ -87,15 +84,9 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 
 		if (source == btnSubmit) {
 			Vector<Exception> exceptions = new Vector<>();
-			int rentalID = 0;
 			long startDate = 0, endDate = 0;
 			double depositPaid = 0, additionalCharges = 0, incurredCharges = 0;
 
-			try {
-				rentalID = Validator.validate("Rental ID", txtRentalID.getText(), true, true, true, 4, 12);
-			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException | MaximumNumberException e) {
-				exceptions.add(e);
-			}
 
 			try {
 				 startDate = Validator.validate("StartDate", txtStartDate.getText(), true, true, true, 5, 20);
@@ -137,7 +128,7 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 
 				Rental rental = new Rental();
 
-				rental.setRentalID(rentalID);
+				
 				rental.setStartDate(startDate);
 				rental.setEndDate(endDate);
 				rental.setDepositPaid(depositPaid);
@@ -181,11 +172,13 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 	}
 
 	private void reset() {
-		txtRentalID.setText("");
+		
 		txtStartDate.setText("");
 		txtEndDate.setText("");
 		txtDepositPaid.setText("");
-
-		txtRentalID.grabFocus();
+		txtAdditionalCharges.setText("");
+		txtIncurredCharges.setText("");
+		chkReturned.setSelected(true);
+		
 	}
 }

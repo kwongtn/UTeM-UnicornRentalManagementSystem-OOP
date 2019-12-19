@@ -30,12 +30,11 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField txtUnicornID = new JTextField();
 	private JTextField txtName = new JTextField(15);
 	private JTextField txtType = new JTextField(15);
 	private JTextField txtRate = new JTextField();
 	private JTextField txtColor = new JTextField();
-	private JCheckBox chkAvailable = new JCheckBox("Auto");
+	private JCheckBox chkAvailable = new JCheckBox();
 	private JCheckBox chkHeatlhCheck = new JCheckBox("Yes", true);
 	private JButton btnSubmit = new JButton("Submit");
 	private JButton btnReset = new JButton("Reset");
@@ -49,8 +48,6 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 		pnlCenter.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
 		pnlSouth.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
 
-		pnlCenter.add(new JLabel("Unicorn ID: ", JLabel.RIGHT));
-		pnlCenter.add(txtUnicornID);
 		pnlCenter.add(new JLabel("Name: ", JLabel.RIGHT));
 		pnlCenter.add(txtName);
 		pnlCenter.add(new JLabel("Type: ", JLabel.RIGHT));
@@ -86,15 +83,9 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 
 		if (source == btnSubmit) {
 			Vector<Exception> exceptions = new Vector<>();
-			int unicornID = 0;
+
 			String name = null, type = null, color = null;
 			double rate = 0;
-
-			try {
-				unicornID = Validator.validate("Unicorn ID", txtUnicornID.getText(), true, true, true, 15, 4);
-			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException | MaximumNumberException e) {
-				exceptions.add(e);
-			}
 
 			try {
 				name = Validator.validate("Name", txtName.getText(), true, 50);
@@ -127,7 +118,6 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 
 				Unicorn unicorn = new Unicorn();
 
-				unicorn.setUnicornID(unicornID);
 				unicorn.setName(name);
 				unicorn.setType(type);
 				unicorn.setRate(rate);
@@ -172,13 +162,12 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 	}
 
 	private void reset() {
-		txtUnicornID.setText("");
 		txtName.setText("");
 		txtType.setText("");
 		txtRate.setText("");
 		txtColor.setText("");
 		chkAvailable.setSelected(false);
 		chkHeatlhCheck.setSelected(true);
-		txtUnicornID.grabFocus();
+		txtName.grabFocus();
 	}
 }

@@ -1,6 +1,7 @@
 package model;
 
-public class Rental extends Model{
+public class Rental{
+    private int rentalID;
     private Unicorn unicorn;
     private Customer customer;
     private long startDate;
@@ -8,21 +9,20 @@ public class Rental extends Model{
     private double depositPaid;
     private double additionalCharges;
     private double incurredCharges;
+    private boolean returned;
 
-    private static int LATEST_ID;
-
-    public Rental(){
-        super(++LATEST_ID);
+    public void setRentalID(int rentalID){
+        this.rentalID = rentalID;
     }
     public int getRentalID(){
-        return super.getUniqueID();
+        return this.rentalID;
     }
 
     // Getter & Setter for unicorn
-    public Unicorn getunicorn(){
+    public Unicorn getUnicorn(){
         return unicorn;
     }
-    public void setunicorn(Unicorn unicorn) {
+    public void setUnicorn(Unicorn unicorn) {
         this.unicorn = unicorn;
     }
     public int getUnicornID(){
@@ -30,10 +30,10 @@ public class Rental extends Model{
     }
 
     // Getter & Setter for customer
-    public Customer getcustomer() {
+    public Customer getCustomer() {
         return customer;
     }
-    public void setcustomer(Customer customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
     public int getCustomerID(){
@@ -76,6 +76,12 @@ public class Rental extends Model{
         this.incurredCharges = incurredCharges;
     }
     
+    public void setReturned(boolean returned) {
+        this.returned = returned;
+    }
+    public boolean isReturned() {
+        return returned;
+    }
 
     public double currentIncurredCharges(){
         return ((this.endDate - this.startDate) * unicorn.getRate());

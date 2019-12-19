@@ -172,13 +172,13 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 	}
 
 	private void reset() {
-		
 		txtStartDate.setText("");
 		txtEndDate.setText("");
 		txtDepositPaid.setText("");
 		txtAdditionalCharges.setText("");
 		txtIncurredCharges.setText("");
 		chkReturned.setSelected(true);
+		txtStartDate.grabFocus();
 		
 	}
 }

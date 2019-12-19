@@ -40,8 +40,14 @@ public class MainFrame extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent event) {
 		Object source = event.getSource();
 		
-		if(source == btnManageUnicorn) {
-			//new ManageUnicornDialog(this);
+		if(source==btnManageUnicorn) {
+			new ManageUnicornDialog(this);
+		}
+		else if(source==btnManageCustomers) {
+			new ManageCustomerDialog(this);
+		}
+		else if(source==btnManageRentals) {
+			new ManageRentalDialog(this);
 		}
 	}
 	

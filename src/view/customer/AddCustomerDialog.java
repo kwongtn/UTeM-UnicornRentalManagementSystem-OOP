@@ -30,7 +30,6 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField txtCustomerID = new JTextField();
 	private JTextField txtCustomerName = new JTextField();
 	private JTextField txtPhoneNo = new JTextField(15);
 	private JTextField txtUnicornLicenseID = new JTextField();
@@ -47,8 +46,6 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 		pnlCenter.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
 		pnlSouth.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
 
-		pnlCenter.add(new JLabel("CustomerID: ", JLabel.RIGHT));
-		pnlCenter.add(txtCustomerID);
 		pnlCenter.add(new JLabel("Name: ", JLabel.RIGHT));
 		pnlCenter.add(txtCustomerName);
 		pnlCenter.add(new JLabel("PhoneNo: ", JLabel.RIGHT));

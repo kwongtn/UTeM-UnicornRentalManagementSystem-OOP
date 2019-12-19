@@ -30,7 +30,6 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField txtRentalID = new JTextField();
 	private JTextField txtStartDate = new JTextField(15);
 	private JTextField txtEndDate = new JTextField(15);
 	private JTextField txtDepositPaid = new JTextField();
@@ -47,8 +46,6 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 		pnlCenter.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
 		pnlSouth.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
 
-		pnlCenter.add(new JLabel("Rental ID: ", JLabel.RIGHT));
-		pnlCenter.add(txtRentalID);
 		pnlCenter.add(new JLabel("StartDate: ", JLabel.RIGHT));
 		pnlCenter.add(txtStartDate);
 		pnlCenter.add(new JLabel("EndDate: ", JLabel.RIGHT));

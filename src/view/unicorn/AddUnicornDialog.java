@@ -30,12 +30,11 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField txtUnicornID = new JTextField();
 	private JTextField txtName = new JTextField(15);
 	private JTextField txtType = new JTextField(15);
 	private JTextField txtPrice = new JTextField();
 	private JTextField txtColor = new JTextField();
-	private JCheckBox chkAvailable = new JCheckBox("Auto");
+	private JCheckBox chkAvailable = new JCheckBox();
 	private JCheckBox chkHeatlhCheck = new JCheckBox("Yes", true);
 	private JButton btnSubmit = new JButton("Submit");
 	private JButton btnReset = new JButton("Reset");
@@ -49,8 +48,6 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 		pnlCenter.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
 		pnlSouth.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
 
-		pnlCenter.add(new JLabel("Unicorn ID: ", JLabel.RIGHT));
-		pnlCenter.add(txtUnicornID);
 		pnlCenter.add(new JLabel("Name: ", JLabel.RIGHT));
 		pnlCenter.add(txtName);
 		pnlCenter.add(new JLabel("Type: ", JLabel.RIGHT));
@@ -86,10 +83,7 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 
 		if (source == btnSubmit) {
 			Vector<Exception> exceptions = new Vector<>();
-			String plateNo = null, model = null;
-			double price = 0;
-			int capacity = 0;
-
+			// TODO : Add "your unicornID is xx" dialog after succesful add
 			try {
 				unicornID = Validator.validate("Unicorn ID", txtUnicornID.getText(), true, 15);
 			} catch (RequiredFieldException | MaximumLengthException e) {
@@ -173,13 +167,12 @@ public class AddUnicornDialog extends JDialog implements ActionListener {
 	}
 
 	private void reset() {
-		txtUnicornID.setText("");
 		txtName.setText("");
 		txtType.setText("");
 		txtPrice.setText("");
 		txtColor.setText("");
 		chkAvailable.setSelected(false);
 		chkHeatlhCheck.setSelected(true);
-		txtUnicornID.grabFocus();
+		txtName.grabFocus();
 	}
 }

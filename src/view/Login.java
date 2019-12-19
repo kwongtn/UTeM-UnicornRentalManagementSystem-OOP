@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,6 +18,9 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import controller.manager.dbManager;
+import controller.validator.MaximumLengthException;
+import controller.validator.RequiredFieldException;
+import controller.validator.Validator;
 
 public class Login extends JFrame implements ActionListener {
     private static final long serialVersionUID = 1L;
@@ -111,20 +115,57 @@ public class Login extends JFrame implements ActionListener {
         if (source == btnExit) {
             System.exit(0);
         } else if (source == btnLogin) {
-            System.out.println("Detected button login.");
+            Vector<Exception> exceptions = new Vector<>();
+
+            String userName = null, password = null;
+
             try {
-                boolean temp = dbManager.login(username.getText(), passwordField.getText());
-                if (temp) {
-                    System.out.println("Username and password correct.");
-                    dispose();
-                    new MainFrame();
-                } else {
-                    System.out.println("Username or Password incorrect.");
-                    JOptionPane.showMessageDialog(this, "Username or password incorrect.", "Error", JOptionPane.WARNING_MESSAGE);
+                userName = Validator.validate("Username", username.getText(), true, 50);
+            } catch (RequiredFieldException | MaximumLengthException e) {
+                exceptions.add(e);
+            }
+
+            try {
+                password = Validator.validate("Password", passwordField.getText(), true, 50);
+            } catch (RequiredFieldException | MaximumLengthException e) {
+                exceptions.add(e);
+            }
+
+            System.out.println("Detected button login.");
+
+            int size = exceptions.size();
+
+            if (size == 0) {
+                try {
+                    boolean temp = dbManager.login(username.getText(), passwordField.getText());
+                    System.out.println(temp);
+                    if (temp) {
+                        System.out.println("Username and password correct.");
+                        dispose();
+                        new MainFrame();
+                    } else {
+                        System.out.println("Username or Password incorrect.");
+                        JOptionPane.showMessageDialog(this, "Username or password incorrect.", "Error",
+                                JOptionPane.WARNING_MESSAGE);
+                    }
+                } catch (ClassNotFoundException | SQLException e) {
+                    JOptionPane.showMessageDialog(this, "Something is wrong here, but we don't know why...yet.",
+                            "Uh Oh!", JOptionPane.WARNING_MESSAGE);
+                    e.printStackTrace();
                 }
-            } catch (ClassNotFoundException | SQLException e) {
-                JOptionPane.showMessageDialog(this, "Something is wrong here, but we don't know why...yet.", "Uh Oh!", JOptionPane.WARNING_MESSAGE);
-                e.printStackTrace();
+            } else {
+                String message = null;
+                if (size == 1) {
+                    message = exceptions.firstElement().getMessage();
+                } else {
+                    message = "Please fix the following errors: ";
+
+                    for (int i = 0; i < size; i++) {
+                        message += "\n" + (i + 1) + ". " + exceptions.get(i).getMessage();
+                    }
+
+                    JOptionPane.showMessageDialog(this, message, "Validation Errors", JOptionPane.WARNING_MESSAGE);
+                }
             }
         }
     }

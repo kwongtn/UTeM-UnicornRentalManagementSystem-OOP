@@ -9,32 +9,30 @@ import java.util.Vector;
 
 import model.Customer;
 
-public class CustomerManager{
+public class CustomerManager extends dbManager{
 
-    private static Vector<Customer> customers = new Vector<>();
+	private static Vector<Customer> customers = new Vector<>();
 
-    private static String dbAddress = "jdbc:mysql://localhost:8080/UNICORNDB";
-	private static String dbUsername = "root";
-	private static String dbPassword = "password";
-
-    public static int addCustomer(Customer customer) throws ClassNotFoundException, SQLException{
-        Class.forName("com.mysql.jdbc.Driver");
+	public static int addCustomer(Customer customer) throws ClassNotFoundException, SQLException {
+		Class.forName("com.mysql.jdbc.Driver");
 
 		Connection connection = DriverManager.getConnection(dbAddress, dbUsername, dbPassword);
 		PreparedStatement ps = connection.prepareStatement("INSERT INTO CUSTOMER(name, phoneNo, unicornLicenseID) VALUES (?,?,?)");
-        
-        ps.setString(1, customer.getName());
-        ps.setString(2, customer.getPhoneNo());
-        ps.setInt(3, customer.getUnicornLicenseID());
-        
-        int status = ps.executeUpdate();
+		
+		ps.setString(1, customer.getName());
+		ps.setString(2, customer.getPhoneNo());
+		ps.setInt(3,customer.getUnicornLicenseID());
 
-        connection.close();
+		int status = ps.executeUpdate();
 
-        return status;
-    }
+		customer.setCustomerID(connection.prepareStatement("SELECT MAX(customerID) FROM CUSTOMER").executeQuery().getInt(1));
 
-    public static int deleteCustomer(int customerID) throws ClassNotFoundException, SQLException {
+		connection.close();
+
+		return status;
+	}
+
+	public static int deleteCustomer(int customerID) throws ClassNotFoundException, SQLException {
 		Class.forName("com.mysql.jdbc.Driver");
 
 		Connection connection = DriverManager.getConnection(dbAddress, dbUsername, dbPassword);
@@ -64,9 +62,9 @@ public class CustomerManager{
 			return 1 + status;
 		}
 
-    }
-    
-    public static int updateCustomer(Customer customer) throws ClassNotFoundException, SQLException{
+	}
+
+	public static int updateCustomer(Customer customer) throws ClassNotFoundException, SQLException{
 		Class.forName("com.mysql.jdbc.Driver");
 
 		Connection connection = DriverManager.getConnection(dbAddress, dbUsername, dbPassword);
@@ -79,8 +77,7 @@ public class CustomerManager{
 
 		int status = ps.executeUpdate();
 
-		connection.close();
-
+		
 		int index = -1;
 		for (int i = 0; i < customers.size(); i++) {
 			Customer temp = customers.get(i);
@@ -90,7 +87,7 @@ public class CustomerManager{
 				break;
 			}
 		}
-		
+
 		return status;
 	}
 
@@ -102,23 +99,22 @@ public class CustomerManager{
 		PreparedStatement ps = connection.prepareStatement("SELECT * FROM CUSTOMER");
 		ResultSet rs = ps.executeQuery();
 
-		Vector<Unicorn> unicorns = new Vector<>();
+		Vector<Customer> customers = new Vector<>();
 
-		while(rs.next()){
-			Unicorn unicorn = new Unicorn();
+		while (rs.next()) {
+			Customer customer = new Customer();
 
-			unicorn.setName(rs.getString(1));
-			unicorn.setType(rs.getString(2));
-			unicorn.setRate(rs.getDouble(3));
-			unicorn.setColor(rs.getString(4));
-			unicorn.setAvailable(rs.getBoolean(5));
-			unicorn.setHealthCheck(rs.getBoolean(6));
+			customer.setCustomerID(rs.getInt(1));
+			customer.setName(rs.getString(2));
+			customer.setPhoneNo(rs.getString(3));
+			customer.setUnicornLicenseID(rs.getInt(4));
 
-			unicorns.add(unicorn);
+			customers.add(customer);
 		}
 
 		connection.close();
 
-		return unicorns;
+		return customers;
 	}
+
 }

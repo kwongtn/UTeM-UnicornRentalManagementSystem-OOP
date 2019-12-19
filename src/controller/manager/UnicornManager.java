@@ -17,8 +17,9 @@ public class UnicornManager extends dbManager{
 		Class.forName("com.mysql.jdbc.Driver");
 
 		Connection connection = DriverManager.getConnection(dbAddress, dbUsername, dbPassword);
-		PreparedStatement ps = connection.prepareStatement("INSERT INTO UNICORN(name, type, rate, color, availability, healthCheck) VALUES (?,?,?,?,?,?)");
+		PreparedStatement ps = connection.prepareStatement("INSERT INTO UNICORN(name, type, rate, color, available, healthCheck) VALUES (?,?,?,?,?,?)");
 		
+		System.out.println("Add unicorn into prepared statement.");
 		ps.setString(1, unicorn.getName());
 		ps.setString(2, unicorn.getType());
 		ps.setDouble(3, unicorn.getRate());
@@ -28,7 +29,9 @@ public class UnicornManager extends dbManager{
 
 		int status = ps.executeUpdate();
 
-		unicorn.setUnicornID(connection.prepareStatement("SELECT MAX(unicornID) FROM UNICORN").executeQuery().getInt(1));
+		ResultSet rs = connection.prepareStatement("SELECT MAX(unicornID) FROM UNICORN").executeQuery();
+		rs.next();
+		unicorn.setUnicornID(Integer.parseInt(rs.getString(1)));
 
 		connection.close();
 

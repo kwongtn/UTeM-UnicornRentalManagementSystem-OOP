@@ -28,8 +28,10 @@ public class RentalManager extends dbManager{
 
 		int status = ps.executeUpdate();
 
-		rental.setRentalID(connection.prepareStatement("SELECT MAX(rentalID) FROM RENTAL").executeQuery().getInt(1));
-
+		ResultSet rs = connection.prepareStatement("SELECT MAX(rentalID) FROM RENTAL").executeQuery();
+		rs.next();
+		rental.setRentalID(Integer.parseInt(rs.getString(1)));
+		
 		connection.close();
 
 		return status;

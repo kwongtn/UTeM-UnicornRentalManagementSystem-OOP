@@ -25,7 +25,9 @@ public class CustomerManager extends dbManager{
 
 		int status = ps.executeUpdate();
 
-		customer.setCustomerID(connection.prepareStatement("SELECT MAX(customerID) FROM CUSTOMER").executeQuery().getInt(1));
+		ResultSet rs = connection.prepareStatement("SELECT MAX(customerID) FROM CUSTOMER").executeQuery();
+		rs.next();
+		customer.setCustomerID(Integer.parseInt(rs.getString(1)));
 
 		connection.close();
 

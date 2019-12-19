@@ -17,20 +17,21 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import controller.manager.UnicornManager;
+import controller.manager.CusotmerManager;
 import controller.validator.InvalidNumberException;
 import controller.validator.MaximumLengthException;
 import controller.validator.MaximumNumberException;
 import controller.validator.MinimumNumberException;
 import controller.validator.RequiredFieldException;
 import controller.validator.Validator;
-import model.Unicorn;
+import model.Customer;
 
 public class AddCustomerDialog extends JDialog implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private JTextField txtName = new JTextField();
+	private JTextField txtCustomerID = new JTextField();
+	private JTextField txtCustomerName = new JTextField();
 	private JTextField txtPhoneNo = new JTextField(15);
 	private JTextField txtUnicornLicenseID = new JTextField();
 
@@ -46,8 +47,10 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 		pnlCenter.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
 		pnlSouth.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
 
+		pnlCenter.add(new JLabel("CusotmerID: ", JLabel.RIGHT));
+		pnlCenter.add(txtCustomerID);
 		pnlCenter.add(new JLabel("Name: ", JLabel.RIGHT));
-		pnlCenter.add(txtName);
+		pnlCenter.add(txtCustomerName);
 		pnlCenter.add(new JLabel("PhoneNo: ", JLabel.RIGHT));
 		pnlCenter.add(txtPhoneNo);
 		pnlCenter.add(new JLabel("UnicornLicenseID: ", JLabel.RIGHT));
@@ -76,24 +79,31 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 
 		if (source == btnSubmit) {
 			Vector<Exception> exceptions = new Vector<>();
-			String plateNo = null, model = null;
-			double price = 0;
-			int capacity = 0;
+			String customerID = null, customerName = null;
+			String phoneNo = null;
+			String unicornLicenseID = null;
 
+			
 			try {
-				plateNo = Validator.validate("Name", txtName.getText(), true, 15);
+				customerID = Validator.validate("CustomerID", txtCustomerID.getText(), true, 15);
 			} catch (RequiredFieldException | MaximumLengthException e) {
 				exceptions.add(e);
 			}
 
 			try {
-				model = Validator.validate("PhoneNo", txtPhoneNo.getText(), true, 50);
+				customerName = Validator.validate("Name", txtCustomerName.getText(), true, 15);
 			} catch (RequiredFieldException | MaximumLengthException e) {
 				exceptions.add(e);
 			}
 
 			try {
-				price = Validator.validate("UnicornLicenseID", txtUnicornLicenseID.getText(), true, true, true, 5, 20);
+				phoneNo = Validator.validate("PhoneNo", txtPhoneNo.getText(), true, 50);
+			} catch (RequiredFieldException | MaximumLengthException e) {
+				exceptions.add(e);
+			}
+
+			try {
+				unicornLicenseID = Validator.validate("UnicornLicenseID", txtUnicornLicenseID.getText(), true, 20);
 			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
 					| MaximumNumberException e) {
 				exceptions.add(e);
@@ -104,17 +114,18 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 
 			if (size == 0) {
 
-				Unicorn unicorn = new Unicorn();
+				Customer customer = new Customer();
 
-				unicorn.setName(name);
-				unicorn.setPhoneNo(phoneNo);
-				unicorn.setUnicornLicenseID(unicornLicenseID);
+				customer.setCustomerID(customerID);
+				customer.setCustomerName(customerName);
+				customer.setPhoneNo(phoneNo);
+				customer.setUnicornLicenseID(unicornLicenseID);
 	
 
 				try {
-					if (CarManager.addCar(car) != -1) {
+					if (CustomerManager.addCusotmer(customer) != -1) {
 						JOptionPane.showMessageDialog(this,
-								"Car with ID " + car.getCarID() + " has been succesfully added.", "Success",
+								"Customer with ID " + customer.getcustomerID() + " has been succesfully added.", "Success",
 								JOptionPane.INFORMATION_MESSAGE);
 						reset();
 
@@ -148,10 +159,11 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 	}
 
 	private void reset() {
-		txtName.setText("");
+		txtCustomerID.setText("");
+		txtCustomerName.setText("");
 		txtPhoneNo.setText("");
 		txtUnicornLicenseID.setText("");
 
-		txtName.grabFocus();
+		txtCustomerID.grabFocus();
 	}
 }

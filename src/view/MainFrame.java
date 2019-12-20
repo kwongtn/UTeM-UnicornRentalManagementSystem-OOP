@@ -17,24 +17,21 @@ public class MainFrame extends JFrame implements ActionListener {
 	private JButton btnManageUnicorn = new JButton("Manage Unicorn");
 	private JButton btnManageCustomers = new JButton("Manage Customers");
 	private JButton btnManageRentals = new JButton("Manage Rentals");
-	private JButton btnTestDb = new JButton("Test Db Connection");
 	private JButton btnExit = new JButton("Logout");
 	
 	public MainFrame() {
 		super("Unicorn Rental Management System");
 		
-		GridLayout layout = new GridLayout(5, 1, 10, 10);
+		GridLayout layout = new GridLayout(4, 1, 10, 10);
 		
 		btnManageUnicorn.addActionListener(this);
 		btnManageCustomers.addActionListener(this);
 		btnManageRentals.addActionListener(this);
 		btnExit.addActionListener(this);
-		btnTestDb.addActionListener(this);
 		
 		this.add(btnManageUnicorn);
 		this.add(btnManageCustomers);
 		this.add(btnManageRentals);
-		this.add(btnTestDb);
 		this.add(btnExit);
 	
 		this.setSize(300, 200);
@@ -61,10 +58,6 @@ public class MainFrame extends JFrame implements ActionListener {
 		else if(source == btnManageRentals) {
 			System.out.println("Manage Rental selected.");
 			new ManageRentalDialog(this);
-		} else if(source == btnTestDb){
-			System.out.println("Test db selected.");
-
-
 		} else if (source == btnExit){
 			System.out.println("Exit selected.");
 			System.exit(0);

@@ -6,9 +6,21 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Debug (Launch) - Current File",
+            "name": "CodeLens (Launch) - Login",
+            "request": "launch",
+            "mainClass": "view.Login",
+            "projectName": "UnicornRentalMgmt"
+        },
+        {
+            "type": "java",
+            "name": "Debug (Launch) - MainFrame",
             "request": "launch",
             "mainClass": "view.MainFrame"
+        },{
+            "type": "java",
+            "name": "Debug (Launch) - Login",
+            "request": "launch",
+            "mainClass": "view.Login"
         },
         {
             "type": "java",

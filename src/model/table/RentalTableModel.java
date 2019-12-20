@@ -11,7 +11,7 @@ public class RentalTableModel extends DefaultTableModel {
 
     public RentalTableModel(Vector<Rental> rentals) {
         int size = rentals.size();
-        String[][] data = new String[size][4];
+        String[][] data = new String[size][8];
 
         for (int i = 0; i < size; i++) {
             Rental rental = rentals.get(i);

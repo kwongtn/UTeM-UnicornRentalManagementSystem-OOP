@@ -17,7 +17,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.manager.CustomerManager;
 import controller.manager.RentalManager;
+import controller.manager.UnicornManager;
 import controller.validator.InvalidNumberException;
 import controller.validator.MaximumLengthException;
 import controller.validator.MaximumNumberException;
@@ -33,8 +35,8 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 	private JTextField txtStartDate = new JTextField(15);
 	private JTextField txtEndDate = new JTextField(15);
 	private JTextField txtDepositPaid = new JTextField();
-	private JTextField txtAdditionalCharges = new JTextField();
-	private JTextField txtIncurredCharges = new JTextField();
+	private JTextField txtUnicornID = new JTextField();
+	private JTextField txtCustomerID = new JTextField();
 	private JCheckBox chkReturned = new JCheckBox("Auto");
 	private JButton btnSubmit = new JButton("Submit");
 	private JButton btnReset = new JButton("Reset");
@@ -48,16 +50,16 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 		pnlCenter.setBorder(BorderFactory.createEmptyBorder(10, 10, 5, 10));
 		pnlSouth.setBorder(BorderFactory.createEmptyBorder(5, 10, 10, 10));
 
+		pnlCenter.add(new JLabel("UnicornID: ", JLabel.RIGHT));
+		pnlCenter.add(txtUnicornID);
+		pnlCenter.add(new JLabel("CustomerID: ", JLabel.RIGHT));
+		pnlCenter.add(txtCustomerID);
 		pnlCenter.add(new JLabel("StartDate: ", JLabel.RIGHT));
 		pnlCenter.add(txtStartDate);
 		pnlCenter.add(new JLabel("EndDate: ", JLabel.RIGHT));
 		pnlCenter.add(txtEndDate);
 		pnlCenter.add(new JLabel("DepositPaid (RM): ", JLabel.RIGHT));
 		pnlCenter.add(txtDepositPaid);
-		pnlCenter.add(new JLabel("Additional Charges (RM): ", JLabel.RIGHT));
-		pnlCenter.add(txtAdditionalCharges);
-		pnlCenter.add(new JLabel("Icurred Charges (RM): ", JLabel.RIGHT));
-		pnlCenter.add(txtIncurredCharges);
 		pnlCenter.add(new JLabel("Can returned on not?: ", JLabel.RIGHT));
 		pnlCenter.add(chkReturned);
 
@@ -77,68 +79,61 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 		this.setLocationRelativeTo(dialog);
 		this.setVisible(true);
 	}
-
+	
 	@Override
 	public void actionPerformed(ActionEvent event) {
 		Object source = event.getSource();
-
+		
 		if (source == btnSubmit) {
+			Rental rental = new Rental();
 			Vector<Exception> exceptions = new Vector<>();
 			long startDate = 0, endDate = 0;
 			double depositPaid = 0, additionalCharges = 0, incurredCharges = 0;
 
 
 			try {
-				 startDate = Validator.validate("StartDate", txtStartDate.getText(), true, true, true, 5, 20);
+				 startDate = Validator.validate("StartDate", txtStartDate.getText(), true, true, true, 20190000, 23331231);
 			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException | MaximumNumberException e) {
 				exceptions.add(e);
 			}
 			
 			try {
-				endDate = Validator.validate("EndDate", txtEndDate.getText(), true, true, true, 5 , 20);
+				endDate = Validator.validate("EndDate", txtEndDate.getText(), true, true, true, 20190000 , 23331231);
 			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException | MaximumNumberException e) {
 				exceptions.add(e);
 			}
 
 			try {
-				depositPaid = Validator.validate("DepositPaid", txtDepositPaid.getText(), true, true, true, 5, 20);
-			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
-					| MaximumNumberException e) {
-				exceptions.add(e);
-			}
-			
-			try {
-				additionalCharges = Validator.validate("AdditionalCharges", txtAdditionalCharges.getText(), true, true, true, 5, 20);
-			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
-					| MaximumNumberException e) {
-				exceptions.add(e);
-			}
-			
-			try {
-				incurredCharges = Validator.validate("IncurredCharges", txtIncurredCharges.getText(), true, true, true, 5, 20);
+				depositPaid = Validator.validate("DepositPaid", txtDepositPaid.getText(), true, true, true, 5, 2000);
 			} catch (RequiredFieldException | InvalidNumberException | MinimumNumberException
 					| MaximumNumberException e) {
 				exceptions.add(e);
 			}
 
+			try {
+				rental.setUnicorn(UnicornManager.getUnicornByID(Integer.parseInt(txtUnicornID.getText())));
+			} catch (SQLException | ClassNotFoundException e){
+				exceptions.add(e);
+			}
 
+			try {
+				rental.setCustomer(CustomerManager.getCustomerByID(Integer.parseInt(txtCustomerID.getText())));
+			} catch (SQLException | ClassNotFoundException e){
+				exceptions.add(e);
+			}
+			
 			int size = exceptions.size();
 
 			if (size == 0) {
 
-				Rental rental = new Rental();
-
-				
 				rental.setStartDate(startDate);
 				rental.setEndDate(endDate);
 				rental.setDepositPaid(depositPaid);
-				rental.setAdditionalCharges(additionalCharges);
-				rental.setIncurredCharges(incurredCharges);
 
 				try {
 					if (RentalManager.addRental(rental) != -1) {
 						JOptionPane.showMessageDialog(this,
-								"Rental with ID " + rental.getUnicornID() + " has been succesfully added.", "Success",
+								"Rental with ID " + rental.getRentalID() + " has been succesfully added.", "Success",
 								JOptionPane.INFORMATION_MESSAGE);
 						reset();
 
@@ -175,8 +170,6 @@ public class AddRentalDialog extends JDialog implements ActionListener {
 		txtStartDate.setText("");
 		txtEndDate.setText("");
 		txtDepositPaid.setText("");
-		txtAdditionalCharges.setText("");
-		txtIncurredCharges.setText("");
 		chkReturned.setSelected(true);
 		txtStartDate.grabFocus();
 		

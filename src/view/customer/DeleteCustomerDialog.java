@@ -2,33 +2,21 @@ package view.customer;
 
 import java.awt.BorderLayout;
 
-import java.awt.Component;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Vector;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 
-import controller.manager.CustomerManager;
 import controller.validator.MaximumLengthException;
 import controller.validator.RequiredFieldException;
 import controller.validator.Validator;
@@ -81,33 +69,24 @@ public class DeleteCustomerDialog extends JDialog implements ActionListener
 		if(source == btnDelete)
 		{
 			Vector<Exception> exceptions = new Vector<>();
-			int id;
-			String x=null;
+			int id = -1;
 			
-			try 
-			{
-				x=Validator.validate("Custommer ID", txtID.getText(), true, 15);
-			} 
-			catch (RequiredFieldException | MaximumLengthException e) 
-			{
-				exceptions.add(e);
+			try {
+				id = Integer.parseInt(Validator.validate("Customer ID", txtID.getText(), true, 15));
+			}
+			catch (RequiredFieldException | MaximumLengthException e) {
+				JOptionPane.showMessageDialog(this, e.getMessage(), "Please fill in properly.", JOptionPane.WARNING_MESSAGE);
 			}
 			
 			int size = exceptions.size();
 			if(size == 0)
 			{
-				id = Integer.parseInt(x);
-				try {
-					if(UnicornManager.deleteUnicorn(id)!=0)
-					{
-						JOptionPane.showMessageDialog(this, "Cusotmer has been deleted." , "Success", JOptionPane.INFORMATION_MESSAGE);
-						reset();
-					}
-					else
-						JOptionPane.showMessageDialog(this, "Unable to delete Customer.","Unsuccessful",JOptionPane.WARNING_MESSAGE);
-				}
-				catch (ClassNotFoundException | SQLException e) {
-					JOptionPane.showMessageDialog(this, e.getMessage(), "Database Error", JOptionPane.WARNING_MESSAGE);
+				try{
+					UnicornManager.deleteUnicorn(id);
+					JOptionPane.showMessageDialog(this, "Customer has been deleted." , "Success", JOptionPane.INFORMATION_MESSAGE);
+					reset();
+				} catch (ClassNotFoundException | SQLException e){
+					JOptionPane.showMessageDialog(this, "Unable to delete Customer.","Unsuccessful",JOptionPane.WARNING_MESSAGE);
 				}
 			}
 			else

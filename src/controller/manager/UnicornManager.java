@@ -74,7 +74,7 @@ public class UnicornManager extends dbManager{
 		Class.forName("com.mysql.jdbc.Driver");
 
 		Connection connection = DriverManager.getConnection(dbAddress, dbUsername, dbPassword);
-		PreparedStatement ps = connection.prepareStatement("UPDATE UNICORN SET name=?, type=?, rate=?, color=?, availability=?, healthCheck=? WHERE unicornID=?");
+		PreparedStatement ps = connection.prepareStatement("UPDATE UNICORN SET name=?, type=?, rate=?, color=?, available=?, healthCheck=? WHERE unicornID=?");
 
 		ps.setString(1, unicorn.getName());
 		ps.setString(2, unicorn.getType());
@@ -135,6 +135,19 @@ public class UnicornManager extends dbManager{
 		for(int i = 0; i < unicorns.size(); i++){
 			Unicorn unicorn = unicorns.get(i);
 			if(unicorn.getUnicornID() == unicornID){
+				return unicorn;
+			}
+		}
+		
+		return null;
+	}
+
+	public static Unicorn getUnicornByName(String name) throws ClassNotFoundException, SQLException{
+		Vector<Unicorn> unicorns = getUnicorns();
+
+		for(int i = 0; i < unicorns.size(); i++){
+			Unicorn unicorn = unicorns.get(i);
+			if(unicorn.getName() == name){
 				return unicorn;
 			}
 		}

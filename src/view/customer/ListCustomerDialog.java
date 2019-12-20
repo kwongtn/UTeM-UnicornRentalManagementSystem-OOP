@@ -34,7 +34,6 @@ public class ListCustomerDialog extends JDialog implements ActionListener {
 			tblCustomers.setModel(new CustomerTableModel(CustomerManager.getCustomers()));
 		}catch (ClassNotFoundException | SQLException e) {
             e.printStackTrace();
-            // TODO TN Check
         }
 		contentPane.setBackground(Color.WHITE);
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

@@ -86,13 +86,13 @@ public class AddCustomerDialog extends JDialog implements ActionListener {
 
 			try {
 				phoneNo = Validator.validate("PhoneNo", txtPhoneNo.getText(), true, 50);
-			} catch (RequiredFieldException | MaximumLengthException e) {
+			} catch (RequiredFieldException | MaximumLengthException | NumberFormatException e) {
 				exceptions.add(e);
 			}
 
 			try {
 				unicornLicenseID = Integer.parseInt(Validator.validate("UnicornLicenseID", txtUnicornLicenseID.getText(), true, 20));
-			} catch (RequiredFieldException | MaximumLengthException e) {
+			} catch (RequiredFieldException | MaximumLengthException | NumberFormatException e) {
 				exceptions.add(e);
 			}
 

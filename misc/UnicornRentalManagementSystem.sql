@@ -34,9 +34,9 @@ CREATE TABLE `RENTAL` (
     `unicornID` INTEGER NOT NULL,
     `customerID` INTEGER NOT NULL,
     `start` LONG NOT NULL,
-    `end` LONG NOT NULL,
-    `depositPaid` DOUBLE NOT NULL,
-    `paidPrice` DOUBLE NOT NULL,
+    `end` LONG,
+    `depositPaid` DOUBLE,
+    `paidPrice` DOUBLE,
     `returned` BOOLEAN NOT NULL,
     `creation` TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     PRIMARY KEY (`rentalID`)
